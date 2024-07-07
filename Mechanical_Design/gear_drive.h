@@ -42,7 +42,7 @@ protected:
 	double SH = 1.2;   //接触安全系数
 	//
 	double KN1 = 0.88;    //寿命系数
-	double KN2 = 0.91;
+	double KN2 = 0.91;		//
 	int j = 1;        //齿轮每转一圈时同一齿面的啮合齿数
 	double N = 0;        //工作应力循环次数
 	double q = 1;        //宽度系数
