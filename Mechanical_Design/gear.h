@@ -7,6 +7,8 @@
 class Gear : public Part {	//
 public:
 	Gear(string mat,string hard):Part(mat,hard){}
+	Gear(string mat,string hard,double oh, double of,int z,double P = 0):Part(mat,hard),OH(oh),OF(of),
+		Z(z),p(P){}
 	virtual ~Gear() {};
 	//参数获取与设置
 	int getZ() const { return Z; }       //获取齿数
@@ -33,7 +35,7 @@ protected:		//保护继承
 	double d = 10;   //分度圆半径
 	double m = 4;	//模数
 	double a = 20; //压力角
-	double p = 14; //螺旋角,
+	double p = 0; //螺旋角,
 	string Rot = "右旋";  //旋向
 	double OH = 300; //接触疲劳极限
 	double OF = 300; //弯曲疲劳极限

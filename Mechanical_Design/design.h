@@ -13,6 +13,7 @@ class Design {
 public:
 	Design()noexcept{}
 	virtual ~Design() {};
+	virtual void setDesign() = 0;		//虚函数，开始设计
 protected:
 	time_t timer = 0;
 	virtual void showDesignInfo(ostream& os) = 0;

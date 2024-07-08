@@ -6,6 +6,8 @@
 class Bevel_Gear : public Gear {
 public:
 	Bevel_Gear(string mat, string hard):Gear(mat,hard){}
+	Bevel_Gear(string mat, string hard,double oh,double of,int z1,double P = 14):
+		Gear(mat,hard,oh,of,z1,P){}
 	~Bevel_Gear();
 	void showInfo(ostream& os) override;	//ÖØÔØĞ±³İÂÖµÄshowInfo
 	double getRotAngle() const noexcept{ return p; }

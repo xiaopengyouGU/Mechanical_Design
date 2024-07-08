@@ -36,6 +36,9 @@
     <ClCompile Include="bevel_gear_drive.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="iteraction.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="part.h">
@@ -63,6 +66,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="bevel_gear_drive.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="iteraction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

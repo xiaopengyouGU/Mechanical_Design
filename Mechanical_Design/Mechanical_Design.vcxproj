@@ -130,6 +130,7 @@
     <ClCompile Include="bevel_gear.cpp" />
     <ClCompile Include="bevel_gear_drive.cpp" />
     <ClCompile Include="gear_drive.cpp" />
+    <ClCompile Include="iteraction.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="part.cpp" />
     <ClCompile Include="spur_gear.cpp" />
@@ -142,6 +143,7 @@
     <ClInclude Include="drive_design.h" />
     <ClInclude Include="gear.h" />
     <ClInclude Include="gear_drive.h" />
+    <ClInclude Include="iteraction.h" />
     <ClInclude Include="part.h" />
     <ClInclude Include="spur_gear.h" />
     <ClInclude Include="spur_gear_drive.h" />

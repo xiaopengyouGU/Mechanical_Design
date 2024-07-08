@@ -14,3 +14,23 @@ void Spur_Gear_Drive::showDesignInfo(ostream&os) {
 Spur_Gear_Drive::~Spur_Gear_Drive() {
 	showDesignInfo(std::cout);
 }
+
+void Spur_Gear_Drive::setDesign() {
+	setDefault();
+	Contact_Fatigue_Design();	//接触疲劳强度设计
+	Bend_Fatigue_Design();	//弯曲疲劳强度设计
+	setGear(dt / mt);		//调整齿数
+}
+
+void Spur_Gear_Drive::setDefault() {	//默认参数设计
+	setT(P / n * 9550000);
+	setu(3.2);
+	setq(1);
+	setSH(1.0);
+	setKHN(0.88, 0.91);	//寿命系数与安全系数
+	setKFN(0.85, 0.88);	//设置寿命系数
+	setSF(1.4);	//
+//	setKHaandKFa();这一步必须在算出分度圆半径后进行
+	setKA();
+	setKHbandKFb(1.320, 1.276);
+}

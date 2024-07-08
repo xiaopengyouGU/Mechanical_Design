@@ -1,47 +1,33 @@
 #include "gear_drive.h"
 
 void Gear_Drive::Contact_Fatigue_Design() {
-	T1 = P / n * 9550000;
-	part1->setZ(24);
-	part2->setZ(77);
 	int z1 = part1->getZ(), z2 = part2->getZ();
 	int B1 = part1->getB(), d1 = part1->getd();
-	u = 3.2; //获取传动比
 	double a = Angle_To_Radian(part1->geta());
-	N = 60 * n * j * Lh;
-	int N2 = N / u;
 	double OH1 = part1->getOH(), OH2 = part2->getOH();
-	OH1 = 600, OH2 = 550;
-	q = 1;			//齿宽系数
 	sete(z1, z2, a);				//计算重合度
 	setTriE(a);						//三个E常数的设定
 	setOH(OH1, OH2);				//获取接触疲劳极限
 	setTrialDiameter();				//获取试算分度圆直径
-	setFourK(1);					//四个接触疲劳K常数的确定	
+	setKHaandKFa(dt);				//计算圆周速度
+	setFourK(1,1.12);					//四个接触疲劳K常数的确定	
 	setdt();						//调整小齿轮分度圆直径
-	double v = M_PI *dt * n / (60 * 1000);//实际的圆周速度
-	double b1 = q * dt;            //齿宽
-	Ft1 = 2 * T1 /dt;
 	mt = dt / z1;					//接触疲劳对应的模数
 }
 
 void Gear_Drive::Bend_Fatigue_Design() {
 	int z1 = part1->getZ();
 	double OF1 = part1->getOF(), OF2 = part2->getOF();
-	OF1 = 500; OF2 = 320;
 	setYe();						//计算重合度系数
 	setOF(OF1,OF2);				//设置弯曲疲劳极限
 	setTrialModulus(OF1, OF2, z1);	//计算弯曲对应的模数,这一步有问题!!!
 
 	//调整齿轮模数
 	double d1 = mt * z1;	//分度圆半径
-	double v = M_PI * d1 * n / (60 * 1000);			//圆周速度
-	double b1 = q * d1;			//齿宽
+	setKHaandKFa(d1);		//计算圆周速度
 	double h = (2 * HA + C) * mt;	//计算宽高比
-	h /= b1;
-	Ft1 = 2 * T1 / d1;
-	double tmp = KA * Ft1 / b1;
-	setFourK(0);					//四个接触疲劳K常数的确定	
+	h /= q*d1;
+	setFourK(0,1.08);					//四个接触疲劳K常数的确定	
 	setmt();						//模数的调整
 }
 
@@ -76,16 +62,12 @@ void Gear_Drive::setTriE(double a, double p) {	//三个E常数的设计
 }
 
 void Gear_Drive::setOH(double OH1, double OH2) {
-	SH = 1;			//设置接触疲劳安全系数
-	KN1 = 0.88, KN2 = 0.91;				//设置两个接触疲劳寿命系数
-	OH = std::min(KN1 * OH1 / SH, KN2 * OH2 / SH); //取最小值
+	OH = std::min(KHN1 * OH1 / SH, KHN2 * OH2 / SH); //取最小值
 }
 
 void Gear_Drive::setOF(double& OF1, double& OF2) {
-	KN1 = 0.85, KN2 = 0.88;
-	SF = 1.4;
 	double O1 = OF1, O2 = OF2;
-	OF1 = KN1 * O1 / SF, OF2 = KN2 * O2 / SF;
+	OF1 = KFN1 * O1 / SF, OF2 = KFN2 * O2 / SF;
 }
 
 void Gear_Drive::setTrialDiameter() {
@@ -97,27 +79,135 @@ void Gear_Drive::setTrialDiameter() {
 	dt = pow(val1*val2*val3, 1.0 / 3); //注意啊，要1.0！注意类型转换
 }
 
-void Gear_Drive::setTrialModulus(double OF1,double OF2,int z1,double p) {
-	double YFa1 = 2.65, YFa2 = 2.33;	//齿形系数
-	double YSa1 = 1.58, YSa2 = 1.76;	//应力修正系数
-	double val1 = std::max(YFa1 * YSa1 / 304, YFa2 * YSa2 / 201);
+void Gear_Drive::setTrialModulus(double OF1,double OF2,double z1,double p) {
+	double YFa1 = 0, YFa2 = 0;	//齿形系数
+	double YSa1 = 0, YSa2 = 0;	//应力修正系数
+	double z2 = z1 * u;
+	setTwoY(YFa1, YSa1, z1);
+	setTwoY(YFa2, YSa2, z2);			
+	double val1 = std::max(YFa1 * YSa1 / OF1, YFa2 * YSa2 / OF2);
 	double val2 = 2 * KT * T1 * Ye / (q * z1 * z1);
 	mt = pow(val2 * val1, 1.0 / 3); //试算模数
 }
 
-void Gear_Drive::setFourK(bool b) {
+void Gear_Drive::setFourK(bool b,double v1) {
+	setKV(v1);
 	if (b) {
-		KA = 1.0;
-		KHa = 1.2;
-		KHb = 1.320;
-		KV = 1.12;
-		K = KA * KV * KHa * KHb;
+		setK(KA * KV * KHa * KHb);
 	}
 	else {
-		KA = 1.0;
-		KFb = 1.276;
-		KFa = 1.0;
-		KV = 1.08;
-		K = KA * KV * KFa * KFb;
+		setK(KA * KV * KFa * KFb);
 	}
+}
+
+void Gear_Drive::setTwoY(double& YFa1, double& YSa1, double z1) {
+	if (z1 < 17) {
+		std::cout << "齿数不对" << std::endl;
+		return;
+	}
+	else if (z1 < 30) {
+		int tmp1 = z1 - 17, tmp2 = z1 + 1 - 17;
+		double val1 = TwoY[tmp1][0], val2 = TwoY[tmp2][0];	//对应YFa
+		double val3 = TwoY[tmp1][1], val4 = TwoY[tmp2][1]; //对应YSa
+		double diff1 = val2 - val1, diff2 = val4 - val3;
+		YFa1 = val1 + diff1 * (z1 - 17 - tmp1); //插值法
+		YSa1 = val3 + diff2 * (z1 - 17 - tmp1);
+	}
+	else if (z1 < 50) {
+		int tmp1 = z1 - 30;
+		tmp1 /= 5;
+		int base = 30 - 17; //基数
+		int t1 = tmp1 + base, t2 = t1 + 1;
+		double val1 = TwoY[t1][0], val2 = TwoY[t2][0];	//对应YFa
+		double val3 = TwoY[t1][1], val4 = TwoY[t2][1]; //对应YSa
+		double diff1 = val2 - val1, diff2 = val4 - val3;
+		diff1 /= 5, diff2 /= 5;
+		YFa1 = val1 + diff1 * (z1 - 30 - tmp1 * 5); //插值法
+		YSa1 = val3 + diff2 * (z1 - 30 - tmp1 * 5);
+	}
+	else if (z1 <= 100) {
+		int tmp1 = z1 - 50;
+		tmp1 /= 10;
+		int base = 30 - 17 + 4; //基数
+		int t1 = tmp1 + base, t2 = t1 + 1;
+		double val1 = TwoY[t1][0], val2 = TwoY[t2][0];	//对应YFa
+		double val3 = TwoY[t1][1], val4 = TwoY[t2][1]; //对应YSa
+		double diff1 = val2 - val1, diff2 = val4 - val3;
+		diff1 /= 10, diff2 /= 10;
+		YFa1 = val1 + diff1 * (z1 - 50 - tmp1 * 10); //插值法
+		YSa1 = val3 + diff2 * (z1 - 50 - tmp1 * 10);
+	}
+	else if (z1 < 150) {
+		int base = 30 - 17 + 4 + 5;
+		int t1 = base, t2 = t1 + 1;
+		double val1 = TwoY[t1][0], val2 = TwoY[t2][0];	//对应YFa
+		double val3 = TwoY[t1][1], val4 = TwoY[t2][1]; //对应YSa
+		double diff1 = val2 - val1, diff2 = val4 - val3;
+		diff1 /= 50, diff2 /= 50;
+		YFa1 = val1 + diff1 * (z1 - 100); //插值法
+		YSa1 = val3 + diff2 * (z1 - 100);
+	}
+	else if (z1 <= 200) {
+		int base = 30 - 17 + 4 + 5 + 1;
+		int t1 = base, t2 = t1 + 1;
+		double val1 = TwoY[t1][0], val2 = TwoY[t2][0];	//对应YFa
+		double val3 = TwoY[t1][1], val4 = TwoY[t2][1]; //对应YSa
+		double diff1 = val2 - val1, diff2 = val4 - val3;
+		diff1 /= 50, diff2 /= 50;
+		YFa1 = val1 + diff1 * (z1 - 150); //插值法
+		YSa1 = val3 + diff2 * (z1 - 150);
+	}
+	else {
+		YFa1 = 2.06, YSa1 = 1.97;
+	}
+
+	//std::cout << "齿形系数YFa = " << YFa1 << " " \
+		<< "应力修正系数YSa = " << YSa1 << std::endl;
+}
+
+void Gear_Drive::setKHaandKFa(double d) { //默认对硬齿面的齿轮进行设计
+	int Level = std::max(part1->getLevel(), part2->getLevel());	//选取低精度的
+	double v = M_PI * d * n / (60 * 1000);//实际的圆周速度
+	double b1 = q * d;            //齿宽
+	Ft1 = 2 * T1 / d;
+	double thre = KA * Ft1 / b1;	//阈值
+	if (part1->getp() > 0) {	//对斜齿轮
+		if (thre >= 100) {
+			switch (Level) {
+			case 7:
+				KHa = KFa = 1.2;
+				break;
+			case 8:
+				KHa = KFa = 1.4;
+				break;
+			case 6:
+				KHa = KFa = 1.1;
+				break;
+			case 5:
+				KHa = KFa = 1.0;
+				break;
+			}
+		}
+		else KHa = KFa= 1.4;
+	}
+	else {
+		if (thre >= 100) {
+			switch (Level) {
+			case 7:
+				KHa = KFa = 1.1;
+				break;
+			case 8:
+				KHa = KFa = 1.2;
+				break;
+			case 6:
+				KHa = KFa = 1.0;
+				break;
+			case 5:
+				KHa = KFa = 1.0;
+				break;
+			}
+		}
+		else KHa = KFa = 1.2;
+	}
+
 }
