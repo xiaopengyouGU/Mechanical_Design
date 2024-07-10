@@ -72,6 +72,8 @@ protected:
 	};																//调整模数
 	virtual void setGear(double z1);			//设置齿轮的参数
 	virtual void setDefault() = 0;					//默认参数设计
+	virtual void setUserChoice() {};				//按用户选定的参数来设计
+
 	void setKHaandKFa(double d);					//设置KHa和KFa参数
 	void setKA(double val = 1.0) { KA = 1.0; };
 	void setKHN(double val1 = 0.88, double val2 = 0.91) { KHN1 = val1, KHN2 = val2; }

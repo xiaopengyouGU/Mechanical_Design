@@ -2,11 +2,19 @@
 //
 #define _CRT_SECURE_NO_WARNINGS
 //#define GEAR_TEST
+//#define DESIGN_TEST
+
 #include <iostream>
-/*#include "spur_gear.h"
+#ifdef GEAR_TEST
+#include "spur_gear.h"
 #include "bevel_gear.h"
 #include "spur_gear_drive.h"
-#include "bevel_gear_drive.h"*/
+#include "bevel_gear_drive.h"
+#endif 
+
+#ifdef DESIGN_TEST
+#include "mechanical_design.h"
+#endif
 
 int main(int argv, char *argc[])
 {
@@ -18,8 +26,12 @@ int main(int argv, char *argc[])
     //这里已经运用了动态绑定！因为内部是指针
     Bevel_Gear_Drive b(std::make_shared<Bevel_Gear>("40Cr", "280HBW",600,500,24,14),
         std::make_shared<Bevel_Gear>("45钢", "240HBW",550,320,77,14));
-    std::cout << "Hello World!\n";*/
+    std::cout << "Hello World!\n";
 #endif // GEAR_TEST
+#ifdef DESIGN_TEST
+    Mechanical_Design();    //测试Interaction类
+#endif // 
+
 
 }
 

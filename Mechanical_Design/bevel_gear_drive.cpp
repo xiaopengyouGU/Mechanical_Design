@@ -6,7 +6,9 @@ Bevel_Gear_Drive::~Bevel_Gear_Drive() {
 }
 
 void Bevel_Gear_Drive::setDesign() {
+	Name = "斜齿圆柱齿轮传动";
 	setDefault();				//默认参数设计
+								//选用setDefault或setUserChoice;
 	Contact_Fatigue_Design();	//接触疲劳强度设计
 	Bend_Fatigue_Design();	//弯曲疲劳强度设计
 	setGear(dt / mt);		//调整齿数
@@ -20,6 +22,7 @@ void Bevel_Gear_Drive::showDesignInfo(ostream& os){
 		part2->showInfo(os);
 	time(&timer);
 	os << "齿轮副的中心距是： " << a << "mm" << std::endl;
+	os << "设计编号是：" << Num << std::endl;
 	os << "当前时间是：" << ctime(&timer) << std::endl;
 }
 
@@ -57,7 +60,7 @@ void Bevel_Gear_Drive::Contact_Fatigue_Design(){
 	int B1 = part1->getB(), d1 = part1->getd();
 	double a = Angle_To_Radian(part1->geta());
 	double p = Angle_To_Radian(part1->getp());
-	double OH1 = part1->getOH(), OH2 = part2->getOH();
+	double OH1 = part1->getOH(), OH2 = part2->getOH();	//获取必要的参数
 	sete(z1, z2, a,p);				//计算重合度
 	setTriE(a,p);						//三个E常数的设定
 	setOH(OH1, OH2);				//获取接触疲劳极限

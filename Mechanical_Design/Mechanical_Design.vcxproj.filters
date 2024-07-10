@@ -13,62 +13,86 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Part">
+      <UniqueIdentifier>{701d3b40-effd-41a7-9a3a-c1f9efcfcda1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\DriveDesign">
+      <UniqueIdentifier>{52bf5732-ab29-495b-9e70-069b260d5b35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Part">
+      <UniqueIdentifier>{9c13edc9-a5ed-432d-9e1f-01c9b2c94fc3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\DriveDesign">
+      <UniqueIdentifier>{2e656d0f-2ef6-442a-849f-76489809bb33}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="bevel_gear.cpp">
+    <ClCompile Include="interaction.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="design_vec.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
     <ClCompile Include="part.cpp">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Part</Filter>
+    </ClCompile>
+    <ClCompile Include="bevel_gear.cpp">
+      <Filter>Resource Files\Part</Filter>
     </ClCompile>
     <ClCompile Include="spur_gear.cpp">
-      <Filter>Resource Files</Filter>
-    </ClCompile>
-    <ClCompile Include="spur_gear_drive.cpp">
-      <Filter>Resource Files</Filter>
-    </ClCompile>
-    <ClCompile Include="gear_drive.cpp">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Part</Filter>
     </ClCompile>
     <ClCompile Include="bevel_gear_drive.cpp">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\DriveDesign</Filter>
     </ClCompile>
-    <ClCompile Include="iteraction.cpp">
+    <ClCompile Include="gear_drive.cpp">
+      <Filter>Resource Files\DriveDesign</Filter>
+    </ClCompile>
+    <ClCompile Include="spur_gear_drive.cpp">
+      <Filter>Resource Files\DriveDesign</Filter>
+    </ClCompile>
+    <ClCompile Include="mechanical_design.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="part.h">
+    <ClInclude Include="interaction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="gear.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="spur_gear.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="design.h">
+    <ClInclude Include="design_vec.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="bevel_gear.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Part</Filter>
     </ClInclude>
-    <ClInclude Include="drive_design.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="gear.h">
+      <Filter>Header Files\Part</Filter>
     </ClInclude>
-    <ClInclude Include="gear_drive.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="part.h">
+      <Filter>Header Files\Part</Filter>
     </ClInclude>
-    <ClInclude Include="spur_gear_drive.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="spur_gear.h">
+      <Filter>Header Files\Part</Filter>
     </ClInclude>
     <ClInclude Include="bevel_gear_drive.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\DriveDesign</Filter>
     </ClInclude>
-    <ClInclude Include="iteraction.h">
+    <ClInclude Include="design.h">
+      <Filter>Header Files\DriveDesign</Filter>
+    </ClInclude>
+    <ClInclude Include="drive_design.h">
+      <Filter>Header Files\DriveDesign</Filter>
+    </ClInclude>
+    <ClInclude Include="gear_drive.h">
+      <Filter>Header Files\DriveDesign</Filter>
+    </ClInclude>
+    <ClInclude Include="spur_gear_drive.h">
+      <Filter>Header Files\DriveDesign</Filter>
+    </ClInclude>
+    <ClInclude Include="mechanical_design.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

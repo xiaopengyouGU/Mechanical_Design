@@ -129,9 +129,11 @@
   <ItemGroup>
     <ClCompile Include="bevel_gear.cpp" />
     <ClCompile Include="bevel_gear_drive.cpp" />
+    <ClCompile Include="design_vec.cpp" />
     <ClCompile Include="gear_drive.cpp" />
-    <ClCompile Include="iteraction.cpp" />
+    <ClCompile Include="interaction.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="mechanical_design.cpp" />
     <ClCompile Include="part.cpp" />
     <ClCompile Include="spur_gear.cpp" />
     <ClCompile Include="spur_gear_drive.cpp" />
@@ -140,10 +142,12 @@
     <ClInclude Include="bevel_gear.h" />
     <ClInclude Include="bevel_gear_drive.h" />
     <ClInclude Include="design.h" />
+    <ClInclude Include="design_vec.h" />
     <ClInclude Include="drive_design.h" />
     <ClInclude Include="gear.h" />
     <ClInclude Include="gear_drive.h" />
-    <ClInclude Include="iteraction.h" />
+    <ClInclude Include="interaction.h" />
+    <ClInclude Include="mechanical_design.h" />
     <ClInclude Include="part.h" />
     <ClInclude Include="spur_gear.h" />
     <ClInclude Include="spur_gear_drive.h" />

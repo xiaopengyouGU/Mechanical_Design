@@ -14,8 +14,13 @@ public:
 	Design()noexcept{}
 	virtual ~Design() {};
 	virtual void setDesign() = 0;		//虚函数，开始设计
+	void setNum(int i) { Num = i; }
+	int getNum() const { return Num; }	//返回设计编号
+	string getName() const { return Name; } //获取设计名称
+	virtual void showDesignInfo(ostream& os) = 0;
 protected:
 	time_t timer = 0;
-	virtual void showDesignInfo(ostream& os) = 0;
+	int Num = 1;		//设计编号
+	string Name = "设计"; //设计名称
 };
 #endif
