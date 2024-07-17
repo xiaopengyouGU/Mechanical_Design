@@ -15,6 +15,4 @@ void Bevel_Gear::showInfo(ostream& os) {
 	os << std::endl;	//Çå¿Õ»º³åÇø
 }
 
-Bevel_Gear::~Bevel_Gear() {
-
-}
+Bevel_Gear::~Bevel_Gear() {}

@@ -12,12 +12,14 @@ void Interaction::setIni(std::ostream&os) {	//初始化界面设置
 }
 
 void Interaction::InterationOfTotal(std::ostream& os) {
-	os << "请选择您要进行的设计:" << std::endl;
-	os << "A 传动设计		B 零件设计			Q 退出" << std::endl;
+	os << "请选择您要进行的操作:" << std::endl;
+	os << "A 传动设计				B 零件设计" << std::endl;
+	os << "C 显示设计信息			Q 退出" << std::endl;
 	std::cin >> chTotal;
-	while (chTotal != 'A' && chTotal != 'B' && chTotal != 'Q') {
+	while (chTotal != 'A' && chTotal != 'B' && chTotal != 'Q' && chTotal != 'C') {
 		os << "请输入正确的选项：" << std::endl;
-		os << "A 传动设计		B 零件设计			Q 退出" << std::endl;
+		os << "A 传动设计				B 零件设计" << std::endl;
+		os << "C 显示设计信息			Q 退出" << std::endl;
 		std::cin >> chTotal;
 	}
 	os << std::endl;
@@ -89,5 +91,19 @@ void Interaction::InterationOfAxle(std::ostream& os) {
 
 void Interaction::InterationOfKey(std::ostream& os) {
 	os << "键的强度设计按照挤压强度来" << std::endl;
+	os << std::endl;
+}
+
+void Interaction::InterationOfInfo(std::ostream& os) {
+	os << "请选择要进行的操作：" << std::endl;
+	os << "A 显示详细设计信息		B 显示粗略设计信息" << std::endl;
+	os << "C 显示单个零件的信息 	Q 退出设计信息显示" << std::endl;
+	std::cin >> chShow;
+	while (chShow != 'A' && chShow != 'B' && chShow != 'Q' && chShow != 'C') {
+		os << "请输入正确的选项：" << std::endl;
+		os << "A 显示详细设计信息				B 显示粗略设计信息" << std::endl;
+		os << "C 显示单个零件的信息				Q 退出" << std::endl;
+		std::cin >> chShow;
+	}
 	os << std::endl;
 }

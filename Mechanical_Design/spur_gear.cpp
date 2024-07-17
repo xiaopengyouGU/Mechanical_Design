@@ -2,7 +2,7 @@
 
 
 void Spur_Gear::showInfo(ostream& os) {
-	os << "该斜齿轮的参数如下：" << std::endl;
+	os << "该直齿轮的参数如下：" << std::endl;
 	os << "齿数z = " << Z << std::endl;
 	os << "宽度b = " << B << "mm" << std::endl;
 	os << "分度圆直径d = " << d << "mm" << std::endl;

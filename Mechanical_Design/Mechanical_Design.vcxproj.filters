@@ -57,6 +57,9 @@
     <ClCompile Include="mechanical_design.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="drive_design.cpp">
+      <Filter>Resource Files\DriveDesign</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="interaction.h">

@@ -130,6 +130,7 @@
     <ClCompile Include="bevel_gear.cpp" />
     <ClCompile Include="bevel_gear_drive.cpp" />
     <ClCompile Include="design_vec.cpp" />
+    <ClCompile Include="drive_design.cpp" />
     <ClCompile Include="gear_drive.cpp" />
     <ClCompile Include="interaction.cpp" />
     <ClCompile Include="main.cpp" />

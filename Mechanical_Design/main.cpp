@@ -2,7 +2,7 @@
 //
 #define _CRT_SECURE_NO_WARNINGS
 //#define GEAR_TEST
-//#define DESIGN_TEST
+#define DESIGN_TEST
 
 #include <iostream>
 #ifdef GEAR_TEST
@@ -19,14 +19,21 @@
 int main(int argv, char *argc[])
 {
  //巧妙的利用宏编译
+   
 #ifdef GEAR_TEST
-    //全部代码加起来不超过六百行
-    Spur_Gear_Drive a(std::make_shared<Spur_Gear>("40Cr", "280HBW",600,500,24),
-        std::make_shared<Spur_Gear>("45钢", "240HBW",550,320,77));
+    //全部代码加起来约850行
+   /*Spur_Gear_Drive a(true, std::make_shared<Spur_Gear>("40Cr", "280HBW", 600, 500, 24),
+       std::make_shared<Spur_Gear>("45钢", "240HBW",550,320,77));
     //这里已经运用了动态绑定！因为内部是指针
-    Bevel_Gear_Drive b(std::make_shared<Bevel_Gear>("40Cr", "280HBW",600,500,24,14),
-        std::make_shared<Bevel_Gear>("45钢", "240HBW",550,320,77,14));
-    std::cout << "Hello World!\n";
+    Bevel_Gear_Drive b(true,std::make_shared<Bevel_Gear>("40Cr", "280HBW",600,500,24,14),
+        std::make_shared<Bevel_Gear>("45钢", "240HBW",550,320,77,14));*/
+    //std::cout << "Hello World!\n";
+    //Spur_Gear_Drive a(false, std::make_shared<Spur_Gear>("40Cr","280HBW",600,500, 24),
+        //std::make_shared<Spur_Gear>("45钢", "240HBW",550,320,77));
+    Bevel_Gear_Drive b(true, std::make_shared<Bevel_Gear>("40Cr", "280HBW"),
+       std::make_shared<Bevel_Gear>("45钢", "240HBW"));
+    //注意啊这里创建对象时先大齿轮，后小齿轮
+ 
 #endif // GEAR_TEST
 #ifdef DESIGN_TEST
     Mechanical_Design();    //测试Interaction类

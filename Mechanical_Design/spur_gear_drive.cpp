@@ -16,12 +16,15 @@ Spur_Gear_Drive::~Spur_Gear_Drive() {
 	showDesignInfo(std::cout);
 }
 
-void Spur_Gear_Drive::setDesign() {
-	Name = "直齿圆柱齿轮传动";	//设计名称
-	setDefault();
-	Contact_Fatigue_Design();	//接触疲劳强度设计
-	Bend_Fatigue_Design();	//弯曲疲劳强度设计
-	setGear(dt / mt);		//调整齿数
+void Spur_Gear_Drive::setDesign(bool b) {
+	Name = "直齿圆柱齿轮传动";			//设计名称
+	if (b)
+		setDefault();
+	else
+		setUserChoice(std::cout);		//用户手动操作
+	Contact_Fatigue_Design();			//接触疲劳强度设计
+	Bend_Fatigue_Design();				//弯曲疲劳强度设计
+	setGear(dt / mt);					//调整齿数
 }
 
 void Spur_Gear_Drive::setDefault() {	//默认参数设计
@@ -29,10 +32,11 @@ void Spur_Gear_Drive::setDefault() {	//默认参数设计
 	setu(3.2);
 	setq(1);
 	setSH(1.0);
-	setKHN(0.88, 0.91);	//寿命系数与安全系数
-	setKFN(0.85, 0.88);	//设置寿命系数
-	setSF(1.4);	//
-//	setKHaandKFa();这一步必须在算出分度圆半径后进行
+	setSF(1.4);
+	setKHN(0.88, 0.91);					//寿命系数与安全系数
+	setKFN(0.85, 0.88);					//设置寿命系数
+	//setKHaandKFa();					//这一步必须在算出分度圆半径后进行
 	setKA();
-	setKHbandKFb(1.320, 1.276);
+	setKHbandKFb(1.320, 1.276);			
 }
+

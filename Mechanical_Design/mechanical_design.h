@@ -13,11 +13,12 @@ public:
 	};
 	~Mechanical_Design() {};
 private:
-	shared_ptr<Design_Vec> vec;		//设计表对象
-	shared_ptr<Interaction> Ite;		//交互对象
+	shared_ptr<Design_Vec> vec;						//设计表对象
+	shared_ptr<Interaction> Ite;					//交互对象
 	//每个零件处理自己的最终设计过程，Mechanical_Design只提供公共接口
-	void startDesign(std::ostream& os);		//开始设计
-	void startDriveDesign(std::ostream& os);//开始传动设计
-	void startPartDesign(std::ostream& os);	//开始零件设计
+	void startDesign(std::ostream& os);				//开始设计
+	void startDriveDesign(std::ostream& os);		//开始传动设计
+	void startPartDesign(std::ostream& os);			//开始零件设计
+	void showDesignInfo(std::ostream& os);			//显示设计信息
 };
 #endif
