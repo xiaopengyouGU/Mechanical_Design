@@ -4,7 +4,7 @@
 class Spur_Gear : public Gear {
 public:
 	Spur_Gear(string mat, string hard):Gear(mat,hard){
-		std::cout << "该直齿轮的材料是：" << mat << " " << "硬度是：" << hard <<std::endl;
+		std::cout << "该直齿轮的材料是：" << mat << " \t" << "硬度是：" << hard <<std::endl;
 		std::cout << "请依次输入接触疲劳强度，弯曲疲劳强度，齿数" << std::endl;
 		double tmpoh, tmpof, tmpz;
 		std::cin >> tmpoh >> tmpof >> tmpz;

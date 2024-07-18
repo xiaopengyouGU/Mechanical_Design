@@ -5,7 +5,7 @@
 //包含所有的具体设计类
 #include "spur_gear_drive.h"
 #include "bevel_gear_drive.h"
-
+//#define USER_CHOICE
 class Design_Vec {
 public:
 	Design_Vec() = default;	//默认构造函数
@@ -19,14 +19,18 @@ public:
 
 	int getSize()const { return VecPtr.size(); }	//返回设计对象数目
 
-	void addDesign(shared_ptr<Design> des);			//添加一个设计对象
+	void addDesign(int type);			//添加一个设计对象
 	void deleteDesign(int pos);						//删除一个设计对象
 	void showDesign(int pos);						//显示一个设计对象
 	void showTotalDesign(bool b);					//显示所有设计对象，详细与否
 	void deleteTotalDesign();						//删除所有设计对象
-	
+
+	enum DesignVector { SpurGearDrive, BevelGearDrive, BeltDrive,ChainDrive,KeyDesign, AxleDesign,
+		DeepBearingDesign,AngleBearingDesign };
+	//定义枚举值，用作用域运算符区分
 private:
 	std::vector<shared_ptr<Design>> VecPtr;			//使用包含智能指针的容器
+	
 };
 
 #endif

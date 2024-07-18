@@ -7,13 +7,13 @@ void Spur_Gear_Drive::showDesignInfo(ostream&os) {
 	if (part2)
 		part2->showInfo(os);
 	time(&timer);
-	os << "齿轮副的中心距是： " << a << "mm" << std::endl;
-	os << "设计编号是：" << Num << std::endl;
-	os << "当前时间是：" << ctime(&timer) << std::endl;
+	os << "齿轮副的中心距： " << a << "mm" << std::endl;
+	os << "设计编号：" << Num << std::endl;
+	os << "当前时间：" << ctime(&timer) << std::endl;
 }
 
 Spur_Gear_Drive::~Spur_Gear_Drive() {
-	showDesignInfo(std::cout);
+	//showDesignInfo(std::cout);
 }
 
 void Spur_Gear_Drive::setDesign(bool b) {
