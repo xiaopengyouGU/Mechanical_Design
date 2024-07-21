@@ -39,6 +39,16 @@ void Bevel_Gear_Drive::setTriE(double a, double p) {
 	double ev = ea / (cos(pb) * cos(pb)); 
 	Ye = 0.25 + 0.75 / ev;	
 	Yp = 1 - ep * p / c;
+#ifdef SHOW_DETAIL
+	std::cout << "pb = "<< pb*180/M_PI << "度" << std::endl;
+	std::cout << "重合度系数Ze = " << Ze << "\n区域系数ZH = " << ZH <<
+		"\n弹性系数ZE = " << ZE << "Mpa^1/2" << std::endl;
+	std::cout << "螺旋角系数Zp = " << Zp << std::endl;
+	std::cout << "当量重合度ev = " << ev << std::endl;
+	std::cout << "弯曲疲劳对应的重合度系数Ye = " << Ye << std::endl;
+	std::cout << "弯曲疲劳强度的螺旋角系数Yp = " << Yp << std::endl;
+#endif // SHOW_DETAIL
+
 }
 
 void Bevel_Gear_Drive::sete(int z1, int z2, double a, double p) {
@@ -47,6 +57,13 @@ void Bevel_Gear_Drive::sete(int z1, int z2, double a, double p) {
 	double a2 = acos(z2 * cos(at) / (z2 + 2 * HA*cos(p)));
 	ea = (z1 * (tan(a1) - tan(at)) + z2 * (tan(a2) - tan(at))) / (2 * M_PI);
 	ep = q * z1 * tan(p) / M_PI;
+#ifdef SHOW_DETAIL
+	std::cout << "at = "  << at*180/M_PI<< "度" << std::endl;
+	std::cout << "a1 = " <<  a1*180/M_PI << "度" << std::endl;
+	std::cout << "a2 = " << a2*180/M_PI   << "度" << std::endl;
+	std::cout << "重合度ea = " << ea << std::endl;
+	std::cout << "重合度ep = " << ep << std::endl;
+#endif // SHOW_DETAIL
 }
 
 void Bevel_Gear_Drive::setTrialDiameter(){
@@ -71,7 +88,7 @@ void Bevel_Gear_Drive::Contact_Fatigue_Design(){
 	setFourK(1,1.10);									//四个接触疲劳K常数的确定	
 	setdt();											//调整小齿轮分度圆直径
 	mt = dt / z1;										//接触疲劳对应的模数
-	std::cout << "算出的分度圆直径：" << dt << std::endl;
+	std::cout << "算出的分度圆直径：" << dt << "mm" << std::endl;
 	std::cout << "按接触疲劳强度设计" << std::endl;
 }
 

@@ -18,7 +18,7 @@
 
 int main(int argv, char *argc[])
 {
- //巧妙的利用宏编译
+ //利用宏编译
    
 #ifdef GEAR_TEST
     //全部代码加起来约850行

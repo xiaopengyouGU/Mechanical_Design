@@ -127,12 +127,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="axle.cpp" />
+    <ClCompile Include="axle_design.cpp" />
+    <ClCompile Include="bearing.cpp" />
+    <ClCompile Include="bearing_design.cpp" />
     <ClCompile Include="bevel_gear.cpp" />
     <ClCompile Include="bevel_gear_drive.cpp" />
     <ClCompile Include="design_vec.cpp" />
     <ClCompile Include="drive_design.cpp" />
     <ClCompile Include="gear_drive.cpp" />
     <ClCompile Include="interaction.cpp" />
+    <ClCompile Include="key.cpp" />
+    <ClCompile Include="key_design.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mechanical_design.cpp" />
     <ClCompile Include="part.cpp" />
@@ -140,6 +146,10 @@
     <ClCompile Include="spur_gear_drive.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="axle.h" />
+    <ClInclude Include="axle_design.h" />
+    <ClInclude Include="bearing.h" />
+    <ClInclude Include="bearing_design.h" />
     <ClInclude Include="bevel_gear.h" />
     <ClInclude Include="bevel_gear_drive.h" />
     <ClInclude Include="design.h" />
@@ -148,8 +158,11 @@
     <ClInclude Include="gear.h" />
     <ClInclude Include="gear_drive.h" />
     <ClInclude Include="interaction.h" />
+    <ClInclude Include="key.h" />
+    <ClInclude Include="key_design.h" />
     <ClInclude Include="mechanical_design.h" />
     <ClInclude Include="part.h" />
+    <ClInclude Include="part_design.h" />
     <ClInclude Include="spur_gear.h" />
     <ClInclude Include="spur_gear_drive.h" />
   </ItemGroup>

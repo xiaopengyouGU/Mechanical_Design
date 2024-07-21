@@ -47,7 +47,6 @@ protected:
 	//其他参数
 	double v = 1;				//圆周速度
 	double j = 1.0;				//齿轮每转一圈时同一齿面的啮合齿数,默认为1，一般不需要改动
-	int Level = 7;				//传动的精度等级
 	double N = 0;				//工作应力循环次数
 	double q = 1;				//宽度系数
 	double dt = 0;				//试算分度圆直径
@@ -63,8 +62,8 @@ protected:
 	virtual void setTrialDiameter();								//获取试算直径，按接触强度,为虚函数
 	virtual void setTrialModulus(double OF1,double OF2,double z1,double p = 0);  //获取试算模数，按弯曲强度
 	virtual void setGear(double z1);								//设置齿轮的参数
-	virtual void setDefault() = 0;									//默认参数设计
-	void setUserChoice(std::ostream&os) ;							//按用户选定的参数来设计
+	//virtual void setDefault() = 0;								//默认参数设计
+	void setUserChoice(std::ostream&os) override;					//按用户选定的参数来设计
 
 	virtual void setTriE(double a, double p = 0);					//三个E常数的处理,为虚函数
 	virtual void sete(int z1, int z2, double a, double p = 0);		//设置重合度,为虚函数
@@ -83,7 +82,6 @@ protected:
 	void setK(double val) { K = val; }								//设置K值
 	void setu(double val) { u = val; }								//修改传动比
 	void setq(double val) { q = val; }								//修改齿宽系数
-	void setLevel(int val) { Level = val; }							//设定传动的精度等级
 	void setmt(); 													//调整模数,按默认规则圆整后的值可能出错
 	void setKHaandKFa(double d);									//设置KHa和KFa参数
 	void setTwoY(double& YFa1, double& YSa1,double z1);				//自动利用插值法计算YFa, YSa

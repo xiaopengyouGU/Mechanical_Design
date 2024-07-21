@@ -25,6 +25,12 @@
     <Filter Include="Resource Files\DriveDesign">
       <UniqueIdentifier>{2e656d0f-2ef6-442a-849f-76489809bb33}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\PartDesign">
+      <UniqueIdentifier>{40a5567b-9fa0-4a1b-8bbe-affa11c3cccf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\PartDesign">
+      <UniqueIdentifier>{e73b105b-be84-42df-9d17-915a7e5e02e4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -54,11 +60,29 @@
     <ClCompile Include="spur_gear_drive.cpp">
       <Filter>Resource Files\DriveDesign</Filter>
     </ClCompile>
-    <ClCompile Include="mechanical_design.cpp">
-      <Filter>Resource Files</Filter>
-    </ClCompile>
     <ClCompile Include="drive_design.cpp">
       <Filter>Resource Files\DriveDesign</Filter>
+    </ClCompile>
+    <ClCompile Include="key_design.cpp">
+      <Filter>Resource Files\PartDesign</Filter>
+    </ClCompile>
+    <ClCompile Include="key.cpp">
+      <Filter>Resource Files\Part</Filter>
+    </ClCompile>
+    <ClCompile Include="bearing.cpp">
+      <Filter>Resource Files\Part</Filter>
+    </ClCompile>
+    <ClCompile Include="bearing_design.cpp">
+      <Filter>Resource Files\PartDesign</Filter>
+    </ClCompile>
+    <ClCompile Include="axle.cpp">
+      <Filter>Resource Files\Part</Filter>
+    </ClCompile>
+    <ClCompile Include="axle_design.cpp">
+      <Filter>Resource Files\PartDesign</Filter>
+    </ClCompile>
+    <ClCompile Include="mechanical_design.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -97,6 +121,27 @@
     </ClInclude>
     <ClInclude Include="mechanical_design.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="part_design.h">
+      <Filter>Header Files\PartDesign</Filter>
+    </ClInclude>
+    <ClInclude Include="key.h">
+      <Filter>Header Files\Part</Filter>
+    </ClInclude>
+    <ClInclude Include="key_design.h">
+      <Filter>Header Files\PartDesign</Filter>
+    </ClInclude>
+    <ClInclude Include="bearing.h">
+      <Filter>Header Files\Part</Filter>
+    </ClInclude>
+    <ClInclude Include="bearing_design.h">
+      <Filter>Header Files\PartDesign</Filter>
+    </ClInclude>
+    <ClInclude Include="axle.h">
+      <Filter>Header Files\Part</Filter>
+    </ClInclude>
+    <ClInclude Include="axle_design.h">
+      <Filter>Header Files\PartDesign</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

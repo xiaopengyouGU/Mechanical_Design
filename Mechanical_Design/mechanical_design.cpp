@@ -95,7 +95,7 @@ void Mechanical_Design::showDesignInfo(std::ostream& os) {
 				os << "当前无设计" << std::endl;
 			}
 			else {
-				os << "请输入设计序号 0-" << vec->getSize() << " :" << std::endl;
+				os << "请输入设计序号 0-" << vec->getSize()-1<< " :" << std::endl;
 				std::cin >> tmp;
 				vec->showDesign(tmp);
 			}

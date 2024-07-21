@@ -15,7 +15,7 @@ void Gear_Drive::Contact_Fatigue_Design() {
 	setdt();						//调整小齿轮分度圆直径
 	mt = dt / z1;					//接触疲劳对应的模数
 	//部分结果输出
-	std::cout << "算出的分度圆直径：" << dt << std::endl;
+	std::cout << "算出的分度圆直径：" << dt << "mm" << std::endl;
 	std::cout << "按接触疲劳强度设计" << std::endl;
 }
 
@@ -77,21 +77,40 @@ void Gear_Drive::sete(int z1, int z2, double a, double p) {
 	double a1 = acos(z1 * cos(a) / (z1 + 2 * HA));
 	double a2 = acos(z2 * cos(a) / (z2 + 2 * HA));
 	e = (z1 * (tan(a1) - tan(a)) + z2 * (tan(a2) - tan(a))) / (2 * M_PI); 
+#ifdef SHOW_DETAIL
+	std::cout << "a1 = " << a1*180/M_PI << "度" << std::endl;
+	std::cout << "a2 = " <<  a2*180/M_PI << "度" << std::endl;
+	std::cout << "重合度e是" << e << std::endl;
+#endif // SHOW_DETAIL
+
 }
 
 void Gear_Drive::setTriE(double a, double p) {	//三个E常数的设计
 	Ze = sqrt((4.0 - e) / 3);			//重合度系数计算;
 	ZH = sqrt(2 / (cos(a) * sin(a)));	//区域系数
 	ZE = 189.8;							//弹性系数，一般都是这个值
+#ifdef SHOW_DETAIL
+	std::cout << "重合度系数Ze = " << Ze << "\n区域系数ZH = " << ZH <<
+		"\n弹性系数ZE = " << ZE << "Mpa^1/2" << std::endl;
+#endif // SHOW_DETAIL
 }
 
 void Gear_Drive::setOH(double OH1, double OH2) {
 	OH = std::min(KHN1 * OH1 / SH, KHN2 * OH2 / SH); //取最小值
+#ifdef SHOW_DETAIL
+	std::cout << "OH1 = " << KHN1 * OH1 / SH << "Mpa\t" << "OH2 = "
+		<< KHN2 * OH2 / SH << "Mpa" << std::endl;
+	std::cout << "接触疲劳需用应力OH = " << OH << "Mpa" << std::endl;
+#endif
 }
 
 void Gear_Drive::setOF(double& OF1, double& OF2) {	//采用了引用
 	double O1 = OF1, O2 = OF2;
 	OF1 = KFN1 * O1 / SF, OF2 = KFN2 * O2 / SF;
+#ifdef SHOW_DETAIL
+	std::cout << "OF1 = " << OF1 << "Mpa\t" << "OF2 = " << OF2 << "Mpa" << std::endl;
+	std::cout << "弯曲疲劳用重合度系数Ye = " << Ye << std::endl;
+#endif // SHOW_DETAIL
 }
 
 void Gear_Drive::setTrialDiameter() {
@@ -112,6 +131,10 @@ void Gear_Drive::setTrialModulus(double OF1,double OF2,double z1,double p) {
 	double val1 = std::max(YFa1 * YSa1 / OF1, YFa2 * YSa2 / OF2);
 	double val2 = 2 * KT * T1 * Ye / (q * z1 * z1);
 	mt = pow(val2 * val1, 1.0 / 3);		//试算模数
+#ifdef SHOW_DETAIL
+	std::cout << "齿形系数YFa1 = " << YFa1 << "\tYFa2 = " << YFa2
+		<< "\n应力修正系数YSa1 = " << YSa1 << "\tYSa2 = " << YSa2 << std::endl;
+#endif
 }
 
 void Gear_Drive::setFourK(bool b,double v1) {
@@ -122,9 +145,15 @@ void Gear_Drive::setFourK(bool b,double v1) {
 	setKV(v1);							//调整动载系数KV
 	if (b) {
 		setK(KA * KV * KHa * KHb);
+#ifdef SHOW_DETAIL
+		std::cout << "接触疲劳的实际载荷系数K = " << K << std::endl;
+#endif 
 	}
 	else {
 		setK(KA * KV * KFa * KFb);
+#ifdef SHOW_DETAIL
+		std::cout << "弯曲疲劳的实际载荷系数K = " << K << std::endl;
+#endif 
 	}
 	std::cout << std::endl;
 }
@@ -239,7 +268,11 @@ void Gear_Drive::setKHaandKFa(double d) { //默认对硬齿面的齿轮进行设计
 		}
 		else KHa = KFa = 1.2;
 	}
-
+#ifdef SHOW_DETAIL
+	std::cout << "Ft1 = " << Ft1 << "N" << std::endl;
+	std::cout << "KA*Ft1/b = " << thre << "N/mm" << std::endl;
+	std::cout << "齿间载荷分配系数Ka = " << KHa << std::endl;
+#endif 
 }
 
 void Gear_Drive::setBasicParameter(std::ostream& os) { //基本参数，不用查表

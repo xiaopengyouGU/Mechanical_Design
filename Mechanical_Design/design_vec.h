@@ -5,7 +5,10 @@
 //包含所有的具体设计类
 #include "spur_gear_drive.h"
 #include "bevel_gear_drive.h"
-//#define USER_CHOICE
+#include "key_design.h"
+#include "bearing_design.h"
+#include "axle_design.h"
+//#define USER_CHOICE		//开启用户手动操作
 class Design_Vec {
 public:
 	Design_Vec() = default;	//默认构造函数

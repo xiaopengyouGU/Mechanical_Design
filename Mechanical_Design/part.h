@@ -3,7 +3,7 @@
 #define PART_H
 #include<string>
 #include<iostream>
-
+#define M_PI       3.14159265358979323846				//定义Pi
 using std::string;
 using std::ostream;
 class Part {

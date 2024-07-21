@@ -1,7 +1,7 @@
 #include "design_vec.h"
 
 void Design_Vec::addDesign(int type) {
-	shared_ptr<Design> des;						//智能指针
+	shared_ptr<Design> des = nullptr;			//智能指针
 	bool flag = true;
 #ifdef USER_CHOICE
 	flag = false;
@@ -24,26 +24,31 @@ void Design_Vec::addDesign(int type) {
 				std::make_shared<Bevel_Gear>(str3, str4), std::make_shared<Bevel_Gear>(str1, str2));
 		}
 		//des->setDesign(true);				//开始具体设计,先小齿轮，再大齿轮
-		des->setNum(getSize());				//添加编号
-		VecPtr.push_back(des);				//添加对象
 	}
 	else if (type == DesignVector::AxleDesign) {
-		//进行轴的设计
+		des = std::make_shared<Axle_Design>(flag, std::make_shared<Axle>());
 	}
 	else if (type == DesignVector::KeyDesign) {
-		//进行键的设计
+		des = std::make_shared<Key_Design>(flag,"静载荷");
 	}
 	else if (type == DesignVector::DeepBearingDesign) {
-		//进行深沟球轴承的设计
+		des = std::make_shared<Bearing_Design>(flag, std::make_shared<Deep_Bearing>());
+		des->setName("深沟球轴承设计");
 	}
 	else if (type == DesignVector::AngleBearingDesign) {
-		//进行角接触球轴承的设计
+		des = std::make_shared<Bearing_Design>(flag, std::make_shared<Angle_Bearing>());
+		des->setName("角接触球轴承设计");
 	}
 	else if (type == DesignVector::BeltDrive) {
 		//进行带传动的设计
 	}
 	else if (type == DesignVector::ChainDrive) {
 		//进行链传动的设计
+	}
+
+	if (des != nullptr) {
+		des->setNum(getSize());				//添加编号
+		VecPtr.push_back(des);				//添加对象
 	}
 } 
 
@@ -54,6 +59,10 @@ void Design_Vec::deleteDesign(int pos) {	//删除一个设计
 	else {
 		std::cout << "删除一个" << VecPtr[pos]->getName() << " " << std::endl;
 		VecPtr.erase(VecPtr.begin() + pos);	//使用迭代器
+		//重新修改编号
+		for (int i = 0; i < VecPtr.size(); i++) {
+			VecPtr[i]->setNum(i);
+		}
 	}
 }
 
