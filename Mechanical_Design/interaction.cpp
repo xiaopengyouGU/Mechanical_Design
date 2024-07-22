@@ -4,7 +4,7 @@ void Interaction::setIni(std::ostream&os) {	//初始化界面设置
 	os << "************************************************" << std::endl;
 	os << "程序名称： Mechaniacl_Design" << std::endl;
 	os << "作者： Lvtou" << std::endl;
-	os << "2024/7/16  CSU" << std::endl;
+	os << "2024/7/21  CSU" << std::endl;
 	os << "开始设计：" << std::endl;
 	os << "可进行的设计:" << std::endl;
 	os << "A 传动设计       B 零件设计" << std::endl;
@@ -104,9 +104,10 @@ void Interaction::InteractionOfInfo(std::ostream& os) {
 	os << "请选择要进行的操作：" << std::endl;
 	os << "A 显示详细设计信息		B 显示粗略设计信息" << std::endl;
 	os << "C 显示单个零件的信息 		D 删除所有设计" << std::endl;
-	os << "E 删除单个设计			Q 退出设计操作" << std::endl;
+	os << "E 删除单个设计			F 将设计信息保存到文件" << std::endl;
+	os << "Q 退出设计操作" << std::endl;
 	std::cin >> chShow;
-	char tmp[6] = { 'A', 'B','Q','C','D','E'};
+	char tmp[7] = { 'A', 'B','Q','C','D','E','F'};
 	bool flag = true;
 	for (int i = 0; i < sizeof(tmp); i++) {
 		if (chShow == tmp[i]) {
@@ -118,7 +119,8 @@ void Interaction::InteractionOfInfo(std::ostream& os) {
 		os << "请输入正确的选项：" << std::endl;
 		os << "A 显示详细设计信息		B 显示粗略设计信息" << std::endl;
 		os << "C 显示单个零件的信息 		D 删除所有设计" << std::endl;
-		os << "E 删除单个设计			Q 退出设计操作" << std::endl;
+		os << "E 删除单个设计			F 将设计信息保存到文件" << std::endl;
+		os << "Q 退出设计操作" << std::endl;
 		std::cin >> chShow;
 		for (int i = 0; i < sizeof(tmp); i++) {
 			if (chShow == tmp[i]) {

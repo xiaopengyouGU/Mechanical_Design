@@ -1,6 +1,6 @@
 #pragma once
 #ifndef GEAR_DRIVE_H
-#define GERA_DRIVE_H
+#define GEAR_DRIVE_H
 #define SHOW_DETAIL				//使用宏来保证显示每一步计算过程
 #include "drive_design.h"
 #include "gear.h"

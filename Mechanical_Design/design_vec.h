@@ -21,12 +21,13 @@ public:
 	~Design_Vec() { std::cout << "完成所有设计!" << std::endl;}
 
 	int getSize()const { return VecPtr.size(); }	//返回设计对象数目
-
-	void addDesign(int type);			//添加一个设计对象
-	void deleteDesign(int pos);						//删除一个设计对象
-	void showDesign(int pos);						//显示一个设计对象
-	void showTotalDesign(bool b);					//显示所有设计对象，详细与否
-	void deleteTotalDesign();						//删除所有设计对象
+	//注意这里调用设计操作时，引入了ostream& 类型的形参
+	//方便后续将设计结果打印到文件中
+	void addDesign(int type,std::ostream&os = std::cout);			//添加一个设计对象
+	void deleteDesign(int pos,std::ostream&os = std::cout);			//删除一个设计对象
+	void showDesign(int pos,std::ostream&os = std::cout);			//显示一个设计对象
+	void showTotalDesign(bool b,std::ostream&os = std::cout);		//显示所有设计对象，详细与否
+	void deleteTotalDesign(std::ostream&os = std::cout);						//删除所有设计对象
 
 	enum DesignVector { SpurGearDrive, BevelGearDrive, BeltDrive,ChainDrive,KeyDesign, AxleDesign,
 		DeepBearingDesign,AngleBearingDesign };

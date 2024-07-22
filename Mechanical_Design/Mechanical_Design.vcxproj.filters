@@ -31,16 +31,16 @@
     <Filter Include="Resource Files\PartDesign">
       <UniqueIdentifier>{e73b105b-be84-42df-9d17-915a7e5e02e4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Frame">
+      <UniqueIdentifier>{b554282b-41a9-46a0-8c82-82afc245505a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Frame">
+      <UniqueIdentifier>{7658cd25-a957-4cfa-85ea-6f101433b619}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="interaction.cpp">
-      <Filter>Resource Files</Filter>
-    </ClCompile>
-    <ClCompile Include="design_vec.cpp">
-      <Filter>Resource Files</Filter>
     </ClCompile>
     <ClCompile Include="part.cpp">
       <Filter>Resource Files\Part</Filter>
@@ -81,17 +81,20 @@
     <ClCompile Include="axle_design.cpp">
       <Filter>Resource Files\PartDesign</Filter>
     </ClCompile>
+    <ClCompile Include="design_vec.cpp">
+      <Filter>Resource Files\Frame</Filter>
+    </ClCompile>
+    <ClCompile Include="interaction.cpp">
+      <Filter>Resource Files\Frame</Filter>
+    </ClCompile>
     <ClCompile Include="mechanical_design.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Resource Files\Frame</Filter>
+    </ClCompile>
+    <ClCompile Include="outputter.cpp">
+      <Filter>Resource Files\Frame</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="interaction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="design_vec.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="bevel_gear.h">
       <Filter>Header Files\Part</Filter>
     </ClInclude>
@@ -119,9 +122,6 @@
     <ClInclude Include="spur_gear_drive.h">
       <Filter>Header Files\DriveDesign</Filter>
     </ClInclude>
-    <ClInclude Include="mechanical_design.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="part_design.h">
       <Filter>Header Files\PartDesign</Filter>
     </ClInclude>
@@ -142,6 +142,18 @@
     </ClInclude>
     <ClInclude Include="axle_design.h">
       <Filter>Header Files\PartDesign</Filter>
+    </ClInclude>
+    <ClInclude Include="design_vec.h">
+      <Filter>Header Files\Frame</Filter>
+    </ClInclude>
+    <ClInclude Include="interaction.h">
+      <Filter>Header Files\Frame</Filter>
+    </ClInclude>
+    <ClInclude Include="mechanical_design.h">
+      <Filter>Header Files\Frame</Filter>
+    </ClInclude>
+    <ClInclude Include="outputter.h">
+      <Filter>Header Files\Frame</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

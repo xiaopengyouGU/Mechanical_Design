@@ -1,7 +1,7 @@
 #pragma once
 #ifndef ITERACTION_H
 #define ITERACTION_H
-//交互类-交换界面
+//交互类界面
 #include<iostream>
 class Interaction {
 public:
@@ -40,6 +40,7 @@ private:
 	char chTotal;									//总体选项
 	char chDrive;									//传动选项
 	char chPart;									//零件选项
+	//拓展用选项
 	char chGearDrive;								//齿轮传动
 	char chKey;										//键的设计
 	char chAxle;									//轴的设计

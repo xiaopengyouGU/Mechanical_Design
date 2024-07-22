@@ -141,6 +141,7 @@
     <ClCompile Include="key_design.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mechanical_design.cpp" />
+    <ClCompile Include="outputter.cpp" />
     <ClCompile Include="part.cpp" />
     <ClCompile Include="spur_gear.cpp" />
     <ClCompile Include="spur_gear_drive.cpp" />
@@ -161,6 +162,7 @@
     <ClInclude Include="key.h" />
     <ClInclude Include="key_design.h" />
     <ClInclude Include="mechanical_design.h" />
+    <ClInclude Include="outputter.h" />
     <ClInclude Include="part.h" />
     <ClInclude Include="part_design.h" />
     <ClInclude Include="spur_gear.h" />

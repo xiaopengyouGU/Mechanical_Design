@@ -1,6 +1,6 @@
 #include "design_vec.h"
 
-void Design_Vec::addDesign(int type) {
+void Design_Vec::addDesign(int type,std::ostream&os) {
 	shared_ptr<Design> des = nullptr;			//智能指针
 	bool flag = true;
 #ifdef USER_CHOICE
@@ -10,10 +10,10 @@ void Design_Vec::addDesign(int type) {
 	if (type == DesignVector::SpurGearDrive || type == DesignVector::BevelGearDrive) {	//直齿轮传动设计
 		//考虑到更好的封装性将参数输入放到Design_Vec类中
 		std::string str1, str2, str3, str4;
-		std::cout << "圆柱齿轮传动设计：" << std::endl;
-		std::cout << "请输入大齿轮的材料和硬度：" << std::endl;
+		os << "圆柱齿轮传动设计：" << std::endl;
+		os << "请输入大齿轮的材料和硬度：" << std::endl;
 		std::cin >> str1 >> str2;
-		std::cout << "请输入小齿轮的材料和硬度：" << std::endl;
+		os << "请输入小齿轮的材料和硬度：" << std::endl;
 		std::cin >> str3 >> str4;
 		if (type == DesignVector::SpurGearDrive) {
 			des = std::make_shared<Spur_Gear_Drive>(flag,
@@ -52,12 +52,12 @@ void Design_Vec::addDesign(int type) {
 	}
 } 
 
-void Design_Vec::deleteDesign(int pos) {	//删除一个设计
+void Design_Vec::deleteDesign(int pos,std::ostream&os) {	//删除一个设计
 	if (pos >= getSize() || pos < 0) {
-		std::cout << "位置出错, pos 必须 >= 0 且  < "<< getSize()-1 << std::endl;
+		os << "位置出错, pos 必须 >= 0 且  < "<< getSize()-1 << std::endl;
 	}
 	else {
-		std::cout << "删除一个" << VecPtr[pos]->getName() << " " << std::endl;
+		os << "删除一个" << VecPtr[pos]->getName() << " " << std::endl;
 		VecPtr.erase(VecPtr.begin() + pos);	//使用迭代器
 		//重新修改编号
 		for (int i = 0; i < VecPtr.size(); i++) {
@@ -66,32 +66,32 @@ void Design_Vec::deleteDesign(int pos) {	//删除一个设计
 	}
 }
 
-void Design_Vec::deleteTotalDesign() {
+void Design_Vec::deleteTotalDesign(std::ostream&os) {
 	//删除所有设计
 	VecPtr.clear();
 }
 
-void Design_Vec::showDesign(int pos) {
+void Design_Vec::showDesign(int pos,std::ostream&os) {
 	if (pos >= getSize() || pos < 0) {
-		std::cout << "位置出错, pos 必须 >= 0 且  < " << getSize()-1 << std::endl;
+		os << "位置出错, pos 必须 >= 0 且  < " << getSize()-1 << std::endl;
 	}
 	else {
-		VecPtr[pos]->showDesignInfo(std::cout);	//显示详细设计
+		VecPtr[pos]->showDesignInfo(os);	//显示详细设计
 	}
 }
 
-void Design_Vec::showTotalDesign(bool b) {
+void Design_Vec::showTotalDesign(bool b,std::ostream&os) {
 	if (getSize() == 0)
-		std::cout << "当前无设计" << std::endl;
+		os << "当前无设计" << std::endl;
 	if (!b) {//粗略显示
 		for (int i = 0; i < getSize(); i++) {
-			std::cout << "编号：" << VecPtr[i]->getNum() << " " << 
+			os << "编号：" << VecPtr[i]->getNum() << " " << 
 				"设计名称：" << VecPtr[i]->getName() << std::endl;
 		}						
 	}
 	else {	//详细显示
 		for (int i = 0; i < getSize(); i++) {
-			showDesign(i);
+			showDesign(i,os);
 		}
 	}
 

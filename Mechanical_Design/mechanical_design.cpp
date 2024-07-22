@@ -81,6 +81,7 @@ void Mechanical_Design::startPartDesign(std::ostream& os) {
 void Mechanical_Design::showDesignInfo(std::ostream& os) {
 	Ite->InteractionOfInfo(os);
 	char ch4 = Ite->getShow();
+	string str = "design";
 	int tmp;
 	while (ch4 != 'Q') {
 		switch (ch4) {
@@ -109,10 +110,16 @@ void Mechanical_Design::showDesignInfo(std::ostream& os) {
 				os << "当前无设计" << std::endl;
 			}
 			else {
-				os << "请输入设计序号 0-" << vec->getSize() << " :" << std::endl;
+				os << "请输入设计序号 0-" << vec->getSize() -1<< " :" << std::endl;
 				std::cin >> tmp;
 				vec->deleteDesign(tmp);
 			}
+			break;
+		case 'F':
+			os << "请输入要保存的文件名：" << std::endl;
+			std::cin >> str;
+			output(str + ".txt", *vec);		//保存设计信息
+			break;
 		default:
 			break;
 		}
