@@ -6,26 +6,26 @@ Bevel_Gear_Drive::~Bevel_Gear_Drive() {
 }
 
 void Bevel_Gear_Drive::setDesign(bool b) {
-	Name = "Ğ±³İÔ²Öù³İÂÖ´«¶¯";
+	Name = "æ–œé½¿åœ†æŸ±é½¿è½®ä¼ åŠ¨";
 	if (b)
-		setDefault();				//Ä¬ÈÏ²ÎÊıÉè¼Æ
+		setDefault();				//é»˜è®¤å‚æ•°è®¾è®¡
 	else
-		setUserChoice(std::cout);	//Ñ¡ÓÃsetDefault»òsetUserChoice;
-	Contact_Fatigue_Design();		//½Ó´¥Æ£ÀÍÇ¿¶ÈÉè¼Æ
-	Bend_Fatigue_Design();			//ÍäÇúÆ£ÀÍÇ¿¶ÈÉè¼Æ
-	setGear(dt / mt);				//µ÷Õû³İÊı
+		setUserChoice(std::cout);	//é€‰ç”¨setDefaultæˆ–setUserChoice;
+	Contact_Fatigue_Design();		//æ¥è§¦ç–²åŠ³å¼ºåº¦è®¾è®¡
+	Bend_Fatigue_Design();			//å¼¯æ›²ç–²åŠ³å¼ºåº¦è®¾è®¡
+	setGear(dt / mt);				//è°ƒæ•´é½¿æ•°
 }
 
 void Bevel_Gear_Drive::showDesignInfo(ostream& os){
-	os << "Ğ±³İÔ²Öù³İÂÖ´«¶¯µÄÖ÷ÒªÉè¼Æ²ÎÊıÈçÏÂ:\n" << std::endl;
+	os << "æ–œé½¿åœ†æŸ±é½¿è½®ä¼ åŠ¨çš„ä¸»è¦è®¾è®¡å‚æ•°å¦‚ä¸‹:\n" << std::endl;
 	if (part1)
 		part1->showInfo(os);
 	if (part2)
 		part2->showInfo(os);
 	time(&timer);
-	os << "³İÂÖ¸±µÄÖĞĞÄ¾à£º " << a << "mm" << std::endl;
-	os << "Éè¼Æ±àºÅ£º" << Num << std::endl;
-	os << "µ±Ç°Ê±¼ä£º" << ctime(&timer) << std::endl;
+	os << "é½¿è½®å‰¯çš„ä¸­å¿ƒè·ï¼š " << a << "mm" << std::endl;
+	os << "è®¾è®¡ç¼–å·ï¼š" << Num << std::endl;
+	os << "å½“å‰æ—¶é—´ï¼š" << ctime(&timer) << std::endl;
 }
 
 void Bevel_Gear_Drive::setTriE(double a, double p) {
@@ -35,18 +35,18 @@ void Bevel_Gear_Drive::setTriE(double a, double p) {
 	ZH = sqrt(2 * cos(pb) / (cos(at) * sin(at)));
 	Zp = sqrt(cos(p));
 	Ze = sqrt((4 - ea) / 3 * (1 - ep) + ep / ea);
-	//ÔÚÕâÀïÖ±½ÓËãºÃYe
+	//åœ¨è¿™é‡Œç›´æ¥ç®—å¥½Ye
 	double ev = ea / (cos(pb) * cos(pb)); 
 	Ye = 0.25 + 0.75 / ev;	
 	Yp = 1 - ep * p / c;
 #ifdef SHOW_DETAIL
-	std::cout << "pb = "<< pb*180/M_PI << "¶È" << std::endl;
-	std::cout << "ÖØºÏ¶ÈÏµÊıZe = " << Ze << "\nÇøÓòÏµÊıZH = " << ZH <<
-		"\nµ¯ĞÔÏµÊıZE = " << ZE << "Mpa^1/2" << std::endl;
-	std::cout << "ÂİĞı½ÇÏµÊıZp = " << Zp << std::endl;
-	std::cout << "µ±Á¿ÖØºÏ¶Èev = " << ev << std::endl;
-	std::cout << "ÍäÇúÆ£ÀÍ¶ÔÓ¦µÄÖØºÏ¶ÈÏµÊıYe = " << Ye << std::endl;
-	std::cout << "ÍäÇúÆ£ÀÍÇ¿¶ÈµÄÂİĞı½ÇÏµÊıYp = " << Yp << std::endl;
+	std::cout << "pb = "<< pb*180/M_PI << "åº¦" << std::endl;
+	std::cout << "é‡åˆåº¦ç³»æ•°Ze = " << Ze << "\nåŒºåŸŸç³»æ•°ZH = " << ZH <<
+		"\nå¼¹æ€§ç³»æ•°ZE = " << ZE << "Mpa^1/2" << std::endl;
+	std::cout << "èºæ—‹è§’ç³»æ•°Zp = " << Zp << std::endl;
+	std::cout << "å½“é‡é‡åˆåº¦ev = " << ev << std::endl;
+	std::cout << "å¼¯æ›²ç–²åŠ³å¯¹åº”çš„é‡åˆåº¦ç³»æ•°Ye = " << Ye << std::endl;
+	std::cout << "å¼¯æ›²ç–²åŠ³å¼ºåº¦çš„èºæ—‹è§’ç³»æ•°Yp = " << Yp << std::endl;
 #endif // SHOW_DETAIL
 
 }
@@ -58,11 +58,11 @@ void Bevel_Gear_Drive::sete(int z1, int z2, double a, double p) {
 	ea = (z1 * (tan(a1) - tan(at)) + z2 * (tan(a2) - tan(at))) / (2 * M_PI);
 	ep = q * z1 * tan(p) / M_PI;
 #ifdef SHOW_DETAIL
-	std::cout << "at = "  << at*180/M_PI<< "¶È" << std::endl;
-	std::cout << "a1 = " <<  a1*180/M_PI << "¶È" << std::endl;
-	std::cout << "a2 = " << a2*180/M_PI   << "¶È" << std::endl;
-	std::cout << "ÖØºÏ¶Èea = " << ea << std::endl;
-	std::cout << "ÖØºÏ¶Èep = " << ep << std::endl;
+	std::cout << "at = "  << at*180/M_PI<< "åº¦" << std::endl;
+	std::cout << "a1 = " <<  a1*180/M_PI << "åº¦" << std::endl;
+	std::cout << "a2 = " << a2*180/M_PI   << "åº¦" << std::endl;
+	std::cout << "é‡åˆåº¦ea = " << ea << std::endl;
+	std::cout << "é‡åˆåº¦ep = " << ep << std::endl;
 #endif // SHOW_DETAIL
 }
 
@@ -70,8 +70,8 @@ void Bevel_Gear_Drive::setTrialDiameter(){
 	double val1 = 2 * KT * T1 / q;
 	double val2 = (u + 1) / u;
 	double val3 = (ZH * ZE * Ze *Zp/ OH);
-	val3 *= val3;								//È¡Æ½·½
-	dt = pow(val1 * val2 * val3, 1.0 / 3);		//×¢Òâ°¡£¬Òª1.0£¡×¢ÒâÀàĞÍ×ª»»
+	val3 *= val3;								//å–å¹³æ–¹
+	dt = pow(val1 * val2 * val3, 1.0 / 3);		//æ³¨æ„å•Šï¼Œè¦1.0ï¼æ³¨æ„ç±»å‹è½¬æ¢
 }
 
 void Bevel_Gear_Drive::Contact_Fatigue_Design(){
@@ -79,81 +79,84 @@ void Bevel_Gear_Drive::Contact_Fatigue_Design(){
 	int B1 = part1->getB(), d1 = part1->getd();
 	double a = Angle_To_Radian(part1->geta());
 	double p = Angle_To_Radian(part1->getp());
-	double OH1 = part1->getOH(), OH2 = part2->getOH();	//»ñÈ¡±ØÒªµÄ²ÎÊı
-	sete(z1, z2, a,p);									//¼ÆËãÖØºÏ¶È
-	setTriE(a,p);										//Èı¸öE³£ÊıµÄÉè¶¨
-	setOH(OH1, OH2);									//»ñÈ¡½Ó´¥Æ£ÀÍ¼«ÏŞ
-	setTrialDiameter();									//»ñÈ¡ÊÔËã·Ö¶ÈÔ²Ö±¾¶
-	setKHaandKFa(dt);									//¼ÆËãÔ²ÖÜËÙ¶È
-	setFourK(1,1.10);									//ËÄ¸ö½Ó´¥Æ£ÀÍK³£ÊıµÄÈ·¶¨	
-	setdt();											//µ÷ÕûĞ¡³İÂÖ·Ö¶ÈÔ²Ö±¾¶
-	mt = dt / z1;										//½Ó´¥Æ£ÀÍ¶ÔÓ¦µÄÄ£Êı
-	std::cout << "Ëã³öµÄ·Ö¶ÈÔ²Ö±¾¶£º" << dt << "mm" << std::endl;
-	std::cout << "°´½Ó´¥Æ£ÀÍÇ¿¶ÈÉè¼Æ" << std::endl;
+	double OH1 = part1->getOH(), OH2 = part2->getOH();	//è·å–å¿…è¦çš„å‚æ•°
+	sete(z1, z2, a,p);									//è®¡ç®—é‡åˆåº¦
+	setTriE(a,p);										//ä¸‰ä¸ªEå¸¸æ•°çš„è®¾å®š
+	setOH(OH1, OH2);									//è·å–æ¥è§¦ç–²åŠ³æé™
+	setTrialDiameter();									//è·å–è¯•ç®—åˆ†åº¦åœ†ç›´å¾„
+	std::cout << "å°é½¿è½®çš„å®½åº¦ä¸ºï¼š" << dt * q << std::endl;
+	std::cout << "é»˜è®¤ä¸ºéå¯¹ç§°å¸ƒç½®" << std::endl;
+	setKHbParameter(std::cout); 								//è·å–KHbå‚æ•°	
+	setKHaandKFa(dt);									//è®¡ç®—åœ†å‘¨é€Ÿåº¦
+	setFourK(1,1.10);									//å››ä¸ªæ¥è§¦ç–²åŠ³Kå¸¸æ•°çš„ç¡®å®š	
+	setdt();											//è°ƒæ•´å°é½¿è½®åˆ†åº¦åœ†ç›´å¾„
+	mt = dt / z1;										//æ¥è§¦ç–²åŠ³å¯¹åº”çš„æ¨¡æ•°
+	std::cout << "ç®—å‡ºçš„åˆ†åº¦åœ†ç›´å¾„ï¼š" << dt << "mm" << std::endl;
+	std::cout << "æŒ‰æ¥è§¦ç–²åŠ³å¼ºåº¦è®¾è®¡" << std::endl;
 }
 
 void Bevel_Gear_Drive::Bend_Fatigue_Design(){
 	int z1 = part1->getZ();
 	double p = Angle_To_Radian(part1->getp());
 	double OF1 = part1->getOF(), OF2 = part2->getOF();
-	setYe();								//¼ÆËãÖØºÏ¶ÈÏµÊı
-	setOF(OF1, OF2);						//ÉèÖÃÍäÇúÆ£ÀÍ¼«ÏŞ
-	setTrialModulus(OF1, OF2, z1,p);		//¼ÆËãÍäÇú¶ÔÓ¦µÄÄ£Êı
-	//µ÷Õû³İÂÖÄ£Êı
-	double d1 = mt * z1/cos(p),tmp = KHb;	//·Ö¶ÈÔ²°ë¾¶
-	double h = (2 * HA + C) * mt,tmp1,tmp2;	//¼ÆËã¿í¸ß±È
+	setYe();								//è®¡ç®—é‡åˆåº¦ç³»æ•°
+	setOF(OF1, OF2);						//è®¾ç½®å¼¯æ›²ç–²åŠ³æé™
+	setTrialModulus(OF1, OF2, z1,p);		//è®¡ç®—å¼¯æ›²å¯¹åº”çš„æ¨¡æ•°
+	//è°ƒæ•´é½¿è½®æ¨¡æ•°
+	double d1 = mt * z1/cos(p),tmp = KHb;	//åˆ†åº¦åœ†åŠå¾„
+	double h = (2 * HA + C) * mt,tmp1,tmp2;	//è®¡ç®—å®½é«˜æ¯”
 	tmp2 = q * d1 / h;
 
-	std::cout << "¿í¸ß±ÈÎª£º" << tmp2 << " " << "½Ó´¥Æ£ÀÍµÄ³İÏòÔØºÉ·ÖÅäÏµÊıKHbÎª£º " << tmp << std::endl;
-	std::cout << "Çë²é±í»ñµÃÍäÇúÆ£ÀÍµÄ³İÏòÔØºÉ·ÖÅäÏµÊıKFb:" << std::endl;
+	std::cout << "å®½é«˜æ¯”ä¸ºï¼š" << tmp2 << " " << "æ¥è§¦ç–²åŠ³çš„é½¿å‘è½½è·åˆ†é…ç³»æ•°KHbä¸ºï¼š " << tmp << std::endl;
+	std::cout << "è¯·æŸ¥è¡¨è·å¾—å¼¯æ›²ç–²åŠ³çš„é½¿å‘è½½è·åˆ†é…ç³»æ•°KFb:" << std::endl;
 	std::cin >> tmp1;
 
 	setKHbandKFb(tmp, tmp1);
 	setKHaandKFa(d1);
-	setFourK(0,1.07);						//ËÄ¸ö½Ó´¥Æ£ÀÍK³£ÊıµÄÈ·¶¨	
-	std::cout << "°´ÍäÇúÆ£ÀÍÇ¿¶ÈĞ£ºË£º" << std::endl;
-	setmt();								//Ä£ÊıµÄµ÷Õû
+	setFourK(0,1.07);						//å››ä¸ªæ¥è§¦ç–²åŠ³Kå¸¸æ•°çš„ç¡®å®š	
+	std::cout << "æŒ‰å¼¯æ›²ç–²åŠ³å¼ºåº¦æ ¡æ ¸ï¼š" << std::endl;
+	setmt();								//æ¨¡æ•°çš„è°ƒæ•´
 }
 
 void Bevel_Gear_Drive::setTrialModulus(double OF1, double OF2, double z1,double p) {
-	double YFa1 = 0, YFa2 = 0;				//³İĞÎÏµÊı
-	double YSa1 = 0, YSa2 = 0;				//Ó¦Á¦ĞŞÕıÏµÊı
+	double YFa1 = 0, YFa2 = 0;				//é½¿å½¢ç³»æ•°
+	double YSa1 = 0, YSa2 = 0;				//åº”åŠ›ä¿®æ­£ç³»æ•°
 	double zt = z1 / pow(cos(p), 3);
 	double z2 = zt * u;
-	setTwoY(YFa1, YSa1, zt);				//µ÷ÓÃ²åÖµ·¨¼ÆËã
+	setTwoY(YFa1, YSa1, zt);				//è°ƒç”¨æ’å€¼æ³•è®¡ç®—
 	setTwoY(YFa2, YSa2, z2);
 	double val1 = std::max(YFa1 * YSa1 / OF1, YFa2 * YSa2 / OF2);
 	double val2 = 2 * KT * T1 * Ye *Yp*cos(p)*cos(p)/ (q * z1 * z1);
-	mt = pow(val2 * val1, 1.0 / 3);			//ÊÔËãÄ£Êı
+	mt = pow(val2 * val1, 1.0 / 3);			//è¯•ç®—æ¨¡æ•°
 }
 
 void Bevel_Gear_Drive::setGear(double z1) {
 	double p = Angle_To_Radian(part1->getp());
 	z1 *= cos(p);	
 	double z2 = z1 * u;
-	z2 = round(z2);							//Ô²ÕûÒ»ÏÂz2
+	z2 = round(z2);							//åœ†æ•´ä¸€ä¸‹z2
 	a = (z1 + z2)*mt / (2 * cos(p));
-	a = round(a);							//Ô²ÕûÒ»ÏÂa
-	int z = z1;								//µ÷Õûz1
+	a = round(a);							//åœ†æ•´ä¸€ä¸‹a
+	int z = z1;								//è°ƒæ•´z1
 	z1 = z;
 	p = acos((z1 + z2) * mt / (2 * a));
 	double d1 = z1 * mt/cos(p), d2 = z2 * mt/(cos(p));
 	double b = q * d1;
 	b = round(b);
 	double b1 = b + 5;
-	part1->setm(mt);						//Éè¼ÆÄ£Êı
+	part1->setm(mt);						//è®¾è®¡æ¨¡æ•°
 	part2->setm(mt);
-	part1->setZ(z1);						//ÉèÖÃ³İÊı
+	part1->setZ(z1);						//è®¾ç½®é½¿æ•°
 	part2->setZ(z2);
-	part1->setd(d1);						//ÉèÖÃ·Ö¶ÈÔ²°ë¾¶
+	part1->setd(d1);						//è®¾ç½®åˆ†åº¦åœ†åŠå¾„
 	part2->setd(d2);
-	part1->setB(b1);						//ÉèÖÃ³İ¿í
+	part1->setB(b1);						//è®¾ç½®é½¿å®½
 	part2->setB(b);
 	p = p *180 / M_PI;
 	part1->setp(p);
 	part2->setp(p);
-	part1->setRot("ÓÒĞı");					//ÉèÖÃĞıÏò£¬ÒªÏà·´
-	part2->setRot("×óĞı");
+	part1->setRot("å³æ—‹");					//è®¾ç½®æ—‹å‘ï¼Œè¦ç›¸å
+	part2->setRot("å·¦æ—‹");
 }
 
 void Bevel_Gear_Drive::setDefault() {
@@ -162,9 +165,9 @@ void Bevel_Gear_Drive::setDefault() {
 	setq(1);
 	setSH(1.0);
 	setSF(1.4);
-	setKHN(0.88, 0.91);						//ÊÙÃüÏµÊıÓë°²È«ÏµÊı
-	setKFN(0.85, 0.88);						//ÉèÖÃÊÙÃüÏµÊı						
+	setKHN(0.88, 0.91);						//å¯¿å‘½ç³»æ•°ä¸å®‰å…¨ç³»æ•°
+	setKFN(0.85, 0.88);						//è®¾ç½®å¯¿å‘½ç³»æ•°						
 	setKA();
-	//setKHaandKFa();						//³İ¼äÔØºÉ·ÖÅäÏµÊıÒªµÈµ½·Ö¶ÈÔ²Ö±¾¶Ëã³ö
-	setKHbandKFb(1.318, 1.28);				//³İÏòÔØºÉ·ÖÅäÏµÊı
+	//setKHaandKFa();						//é½¿é—´è½½è·åˆ†é…ç³»æ•°è¦ç­‰åˆ°åˆ†åº¦åœ†ç›´å¾„ç®—å‡º
+	setKHbandKFb(1.318, 1.28);				//é½¿å‘è½½è·åˆ†é…ç³»æ•°
 }
