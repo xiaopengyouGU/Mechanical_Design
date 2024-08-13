@@ -5,72 +5,75 @@ void Gear_Drive::Contact_Fatigue_Design() {
 	int B1 = part1->getB(), d1 = part1->getd();
 	double a = Angle_To_Radian(part1->geta());
 	double OH1 = part1->getOH(), OH2 = part2->getOH();
-	//²ÎÊıÉè¼Æ
-	sete(z1, z2, a);				//¼ÆËãÖØºÏ¶È
-	setTriE(a);						//Èı¸öE³£ÊıµÄÉè¶¨
-	setOH(OH1, OH2);				//»ñÈ¡½Ó´¥Æ£ÀÍ¼«ÏŞ
-	setTrialDiameter();				//»ñÈ¡ÊÔËã·Ö¶ÈÔ²Ö±¾¶
-	setKHaandKFa(dt);				//¼ÆËãÔ²ÖÜËÙ¶È
-	setFourK(1,1.12);				//ËÄ¸ö½Ó´¥Æ£ÀÍK³£ÊıµÄÈ·¶¨	
-	setdt();						//µ÷ÕûĞ¡³İÂÖ·Ö¶ÈÔ²Ö±¾¶
-	mt = dt / z1;					//½Ó´¥Æ£ÀÍ¶ÔÓ¦µÄÄ£Êı
-	//²¿·Ö½á¹ûÊä³ö
-	std::cout << "Ëã³öµÄ·Ö¶ÈÔ²Ö±¾¶£º" << dt << "mm" << std::endl;
-	std::cout << "°´½Ó´¥Æ£ÀÍÇ¿¶ÈÉè¼Æ" << std::endl;
+	//å‚æ•°è®¾è®¡
+	sete(z1, z2, a);				//è®¡ç®—é‡åˆåº¦
+	setTriE(a);						//ä¸‰ä¸ªEå¸¸æ•°çš„è®¾å®š
+	setOH(OH1, OH2);				//è·å–æ¥è§¦ç–²åŠ³æé™
+	setTrialDiameter();				//è·å–è¯•ç®—åˆ†åº¦åœ†ç›´å¾„
+	std::cout << "å°é½¿è½®çš„å®½åº¦ä¸ºï¼š" << dt * q << std::endl;
+	std::cout << "é»˜è®¤ä¸ºéå¯¹ç§°å¸ƒç½®" << std::endl;
+	setKHbParameter(std::cout); 			//è·å–KHbå‚æ•°	
+	setKHaandKFa(dt);				//è®¡ç®—åœ†å‘¨é€Ÿåº¦
+	setFourK(1,1.12);				//å››ä¸ªæ¥è§¦ç–²åŠ³Kå¸¸æ•°çš„ç¡®å®š	
+	setdt();						//è°ƒæ•´å°é½¿è½®åˆ†åº¦åœ†ç›´å¾„
+	mt = dt / z1;					//æ¥è§¦ç–²åŠ³å¯¹åº”çš„æ¨¡æ•°
+	//éƒ¨åˆ†ç»“æœè¾“å‡º
+	std::cout << "ç®—å‡ºçš„åˆ†åº¦åœ†ç›´å¾„ï¼š" << dt << "mm" << std::endl;
+	std::cout << "æŒ‰æ¥è§¦ç–²åŠ³å¼ºåº¦è®¾è®¡" << std::endl;
 }
 
 void Gear_Drive::Bend_Fatigue_Design() {
-	//´ÓÁã¼ş»ñÈ¡ËùĞèĞÅÏ¢
+	//ä»é›¶ä»¶è·å–æ‰€éœ€ä¿¡æ¯
 	int z1 = part1->getZ();
 	double OF1 = part1->getOF(), OF2 = part2->getOF();
 
-	setYe();									//¼ÆËãÖØºÏ¶ÈÏµÊı
-	setOF(OF1,OF2);								//ÉèÖÃÍäÇúÆ£ÀÍ¼«ÏŞ
-	setTrialModulus(OF1, OF2, z1);				//¼ÆËãÍäÇú¶ÔÓ¦µÄÄ£Êı
+	setYe();									//è®¡ç®—é‡åˆåº¦ç³»æ•°
+	setOF(OF1,OF2);								//è®¾ç½®å¼¯æ›²ç–²åŠ³æé™
+	setTrialModulus(OF1, OF2, z1);				//è®¡ç®—å¼¯æ›²å¯¹åº”çš„æ¨¡æ•°
 	
-	double d1 = mt * z1,tmp = KHb,tmp1;			//·Ö¶ÈÔ²°ë¾¶
-	double h = (2 * HA + C) * mt,tmp2;			//¼ÆËã¿í¸ß±È
+	double d1 = mt * z1,tmp = KHb,tmp1;			//åˆ†åº¦åœ†åŠå¾„
+	double h = (2 * HA + C) * mt,tmp2;			//è®¡ç®—å®½é«˜æ¯”
 	tmp2 = q * d1 / h;
-	//Êä³ö²¿·ÖĞÅÏ¢
-	std::cout << "¿í¸ß±ÈÎª£º" << tmp2 << " " << "½Ó´¥Æ£ÀÍµÄ³İÏòÔØºÉ·ÖÅäÏµÊıKHbÎª£º " << tmp << std::endl;
-	std::cout << "Çë²é±í»ñµÃÍäÇúÆ£ÀÍµÄ³İÏòÔØºÉ·ÖÅäÏµÊıKFb:" << std::endl;
+	//è¾“å‡ºéƒ¨åˆ†ä¿¡æ¯
+	std::cout << "å®½é«˜æ¯”ä¸ºï¼š" << tmp2 << " " << "æ¥è§¦ç–²åŠ³çš„é½¿å‘è½½è·åˆ†é…ç³»æ•°KHbä¸ºï¼š " << tmp << std::endl;
+	std::cout << "è¯·æŸ¥è¡¨è·å¾—å¼¯æ›²ç–²åŠ³çš„é½¿å‘è½½è·åˆ†é…ç³»æ•°KFb:" << std::endl;
 	std::cin >> tmp1;
 	setKHbandKFb(tmp, tmp1);
 
- 	setKHaandKFa(d1);							//¼ÆËãÔ²ÖÜËÙ¶È
-	setFourK(0,1.08);							//ËÄ¸ö½Ó´¥Æ£ÀÍK³£ÊıµÄÈ·¶¨	
-	std::cout << "°´ÍäÇúÆ£ÀÍÇ¿¶ÈÉè¼Æ£º" << std::endl;
-	setmt();									//Ä£ÊıµÄµ÷Õû
+ 	setKHaandKFa(d1);							//è®¡ç®—åœ†å‘¨é€Ÿåº¦
+	setFourK(0,1.08);							//å››ä¸ªæ¥è§¦ç–²åŠ³Kå¸¸æ•°çš„ç¡®å®š	
+	std::cout << "æŒ‰å¼¯æ›²ç–²åŠ³å¼ºåº¦è®¾è®¡ï¼š" << std::endl;
+	setmt();									//æ¨¡æ•°çš„è°ƒæ•´
 }
 
 void Gear_Drive::setmt() 
-{	//±£Ö¤Ô²ÕûºóµÄÄ£ÊıÎª±ê×¼µÄ
+{	//ä¿è¯åœ†æ•´åçš„æ¨¡æ•°ä¸ºæ ‡å‡†çš„
 	mt = mt * pow(K / KT, 1.0 / 3);	
 	double tmp = mt;
 	mt = round(mt);
-	std::cout << "Ô²ÕûÇ°µÄÄ£Êı£º" << tmp << " " << "°´Ä¬ÈÏ¹æÔòÔ²ÕûºóµÄÄ£Êı£º" << mt << std::endl;
-	std::cout << "Äã¿ÉÒÔµ÷ÕûÔ²ÕûÖµ£º";
+	std::cout << "åœ†æ•´å‰çš„æ¨¡æ•°ï¼š" << tmp << " " << "æŒ‰é»˜è®¤è§„åˆ™åœ†æ•´åçš„æ¨¡æ•°ï¼š" << mt << std::endl;
+	std::cout << "ä½ å¯ä»¥è°ƒæ•´åœ†æ•´å€¼ï¼š";
 	std::cin >> tmp;
 	mt = tmp;
 	std::cout << std::endl;
 };
 
-void Gear_Drive::setGear(double z1) {//¼ÆËã³İ¿íÖĞĞÄ¾àµÈ
+void Gear_Drive::setGear(double z1) {//è®¡ç®—é½¿å®½ä¸­å¿ƒè·ç­‰
 	double z2 = z1 * u;
-	z1 = round(z1), z2 = round(z2); //Ô²ÕûÒ»ÏÂÁ½¸öÖµ
+	z1 = round(z1), z2 = round(z2); //åœ†æ•´ä¸€ä¸‹ä¸¤ä¸ªå€¼
 	double d1 = z1 * mt, d2 = z2 * mt;
 	double b = q * d1;
 	double b1 = b + 5;
-	part1->setm(mt);				//Éè¼ÆÄ£Êı
+	part1->setm(mt);				//è®¾è®¡æ¨¡æ•°
 	part2->setm(mt);
-	part1->setZ(z1);				//ÉèÖÃ³İÊı
+	part1->setZ(z1);				//è®¾ç½®é½¿æ•°
 	part2->setZ(z2);
-	part1->setd(d1);				//ÉèÖÃ·Ö¶ÈÔ²°ë¾¶
+	part1->setd(d1);				//è®¾ç½®åˆ†åº¦åœ†åŠå¾„
 	part2->setd(d2);
-	part1->setB(b1);				//ÉèÖÃ³İ¿í
+	part1->setB(b1);				//è®¾ç½®é½¿å®½
 	part2->setB(b);	
 	a = (d1 + d2) / 2;
-	a = round(a);					//Ô²ÕûÖĞĞÄ¾à
+	a = round(a);					//åœ†æ•´ä¸­å¿ƒè·
 }
 
 void Gear_Drive::sete(int z1, int z2, double a, double p) {
@@ -78,81 +81,81 @@ void Gear_Drive::sete(int z1, int z2, double a, double p) {
 	double a2 = acos(z2 * cos(a) / (z2 + 2 * HA));
 	e = (z1 * (tan(a1) - tan(a)) + z2 * (tan(a2) - tan(a))) / (2 * M_PI); 
 #ifdef SHOW_DETAIL
-	std::cout << "a1 = " << a1*180/M_PI << "¶È" << std::endl;
-	std::cout << "a2 = " <<  a2*180/M_PI << "¶È" << std::endl;
-	std::cout << "ÖØºÏ¶ÈeÊÇ" << e << std::endl;
+	std::cout << "a1 = " << a1*180/M_PI << "åº¦" << std::endl;
+	std::cout << "a2 = " <<  a2*180/M_PI << "åº¦" << std::endl;
+	std::cout << "é‡åˆåº¦eæ˜¯" << e << std::endl;
 #endif // SHOW_DETAIL
 
 }
 
-void Gear_Drive::setTriE(double a, double p) {	//Èı¸öE³£ÊıµÄÉè¼Æ
-	Ze = sqrt((4.0 - e) / 3);			//ÖØºÏ¶ÈÏµÊı¼ÆËã;
-	ZH = sqrt(2 / (cos(a) * sin(a)));	//ÇøÓòÏµÊı
-	ZE = 189.8;							//µ¯ĞÔÏµÊı£¬Ò»°ã¶¼ÊÇÕâ¸öÖµ
+void Gear_Drive::setTriE(double a, double p) {	//ä¸‰ä¸ªEå¸¸æ•°çš„è®¾è®¡
+	Ze = sqrt((4.0 - e) / 3);			//é‡åˆåº¦ç³»æ•°è®¡ç®—;
+	ZH = sqrt(2 / (cos(a) * sin(a)));	//åŒºåŸŸç³»æ•°
+	ZE = 189.8;							//å¼¹æ€§ç³»æ•°ï¼Œä¸€èˆ¬éƒ½æ˜¯è¿™ä¸ªå€¼
 #ifdef SHOW_DETAIL
-	std::cout << "ÖØºÏ¶ÈÏµÊıZe = " << Ze << "\nÇøÓòÏµÊıZH = " << ZH <<
-		"\nµ¯ĞÔÏµÊıZE = " << ZE << "Mpa^1/2" << std::endl;
+	std::cout << "é‡åˆåº¦ç³»æ•°Ze = " << Ze << "\nåŒºåŸŸç³»æ•°ZH = " << ZH <<
+		"\nå¼¹æ€§ç³»æ•°ZE = " << ZE << "Mpa^1/2" << std::endl;
 #endif // SHOW_DETAIL
 }
 
 void Gear_Drive::setOH(double OH1, double OH2) {
-	OH = std::min(KHN1 * OH1 / SH, KHN2 * OH2 / SH); //È¡×îĞ¡Öµ
+	OH = std::min(KHN1 * OH1 / SH, KHN2 * OH2 / SH); //å–æœ€å°å€¼
 #ifdef SHOW_DETAIL
 	std::cout << "OH1 = " << KHN1 * OH1 / SH << "Mpa\t" << "OH2 = "
 		<< KHN2 * OH2 / SH << "Mpa" << std::endl;
-	std::cout << "½Ó´¥Æ£ÀÍĞèÓÃÓ¦Á¦OH = " << OH << "Mpa" << std::endl;
+	std::cout << "æ¥è§¦ç–²åŠ³éœ€ç”¨åº”åŠ›OH = " << OH << "Mpa" << std::endl;
 #endif
 }
 
-void Gear_Drive::setOF(double& OF1, double& OF2) {	//²ÉÓÃÁËÒıÓÃ
+void Gear_Drive::setOF(double& OF1, double& OF2) {	//é‡‡ç”¨äº†å¼•ç”¨
 	double O1 = OF1, O2 = OF2;
 	OF1 = KFN1 * O1 / SF, OF2 = KFN2 * O2 / SF;
 #ifdef SHOW_DETAIL
 	std::cout << "OF1 = " << OF1 << "Mpa\t" << "OF2 = " << OF2 << "Mpa" << std::endl;
-	std::cout << "ÍäÇúÆ£ÀÍÓÃÖØºÏ¶ÈÏµÊıYe = " << Ye << std::endl;
+	std::cout << "å¼¯æ›²ç–²åŠ³ç”¨é‡åˆåº¦ç³»æ•°Ye = " << Ye << std::endl;
 #endif // SHOW_DETAIL
 }
 
 void Gear_Drive::setTrialDiameter() {
-	//»ñÈ¡ÊÔËã½Ó´¥Æ£ÀÍÇ¿¶È¶ÔÓ¦µÄ·Ö¶ÈÔ²°ë¾¶
+	//è·å–è¯•ç®—æ¥è§¦ç–²åŠ³å¼ºåº¦å¯¹åº”çš„åˆ†åº¦åœ†åŠå¾„
 	double val1 = 2 * KT * T1 / q;
 	double val2 = (u + 1) / u;
 	double val3 = (ZH * ZE * Ze / OH);
-	val3 *= val3;						//È¡Æ½·½
-	dt = pow(val1*val2*val3, 1.0 / 3);  //×¢Òâ°¡£¬Òª1.0£¡×¢ÒâÀàĞÍ×ª»»
+	val3 *= val3;						//å–å¹³æ–¹
+	dt = pow(val1*val2*val3, 1.0 / 3);  //æ³¨æ„å•Šï¼Œè¦1.0ï¼æ³¨æ„ç±»å‹è½¬æ¢
 }
 
 void Gear_Drive::setTrialModulus(double OF1,double OF2,double z1,double p) {
-	double YFa1 = 0, YFa2 = 0;			//³İĞÎÏµÊı
-	double YSa1 = 0, YSa2 = 0;			//Ó¦Á¦ĞŞÕıÏµÊı
+	double YFa1 = 0, YFa2 = 0;			//é½¿å½¢ç³»æ•°
+	double YSa1 = 0, YSa2 = 0;			//åº”åŠ›ä¿®æ­£ç³»æ•°
 	double z2 = z1 * u;
 	setTwoY(YFa1, YSa1, z1);
 	setTwoY(YFa2, YSa2, z2);			
 	double val1 = std::max(YFa1 * YSa1 / OF1, YFa2 * YSa2 / OF2);
 	double val2 = 2 * KT * T1 * Ye / (q * z1 * z1);
-	mt = pow(val2 * val1, 1.0 / 3);		//ÊÔËãÄ£Êı
+	mt = pow(val2 * val1, 1.0 / 3);		//è¯•ç®—æ¨¡æ•°
 #ifdef SHOW_DETAIL
-	std::cout << "³İĞÎÏµÊıYFa1 = " << YFa1 << "\tYFa2 = " << YFa2
-		<< "\nÓ¦Á¦ĞŞÕıÏµÊıYSa1 = " << YSa1 << "\tYSa2 = " << YSa2 << std::endl;
+	std::cout << "é½¿å½¢ç³»æ•°YFa1 = " << YFa1 << "\tYFa2 = " << YFa2
+		<< "\nåº”åŠ›ä¿®æ­£ç³»æ•°YSa1 = " << YSa1 << "\tYSa2 = " << YSa2 << std::endl;
 #endif
 }
 
 void Gear_Drive::setFourK(bool b,double v1) {
-	std::cout << "µ±Ç°ËÙ¶ÈÊÇ£º" << v <<  "m/s" << "  " << "¾«¶ÈµÈ¼¶ÊÇ£º" << Level << std::endl;
-	std::cout << "µ±Ç°¶¯ÔØÏµÊıÊÇ£º" << v1 << std::endl;
-	std::cout << "Äã¿ÉÒÔµ÷Õû¶¯ÔØÏµÊı£º" << std::endl;
+	std::cout << "å½“å‰é€Ÿåº¦æ˜¯ï¼š" << v <<  "m/s" << "  " << "ç²¾åº¦ç­‰çº§æ˜¯ï¼š" << Level << std::endl;
+	std::cout << "å½“å‰åŠ¨è½½ç³»æ•°æ˜¯ï¼š" << v1 << std::endl;
+	std::cout << "ä½ å¯ä»¥è°ƒæ•´åŠ¨è½½ç³»æ•°ï¼š" << std::endl;
 	std::cin >> v1;
-	setKV(v1);							//µ÷Õû¶¯ÔØÏµÊıKV
+	setKV(v1);							//è°ƒæ•´åŠ¨è½½ç³»æ•°KV
 	if (b) {
 		setK(KA * KV * KHa * KHb);
 #ifdef SHOW_DETAIL
-		std::cout << "½Ó´¥Æ£ÀÍµÄÊµ¼ÊÔØºÉÏµÊıK = " << K << std::endl;
+		std::cout << "æ¥è§¦ç–²åŠ³çš„å®é™…è½½è·ç³»æ•°K = " << K << std::endl;
 #endif 
 	}
 	else {
 		setK(KA * KV * KFa * KFb);
 #ifdef SHOW_DETAIL
-		std::cout << "ÍäÇúÆ£ÀÍµÄÊµ¼ÊÔØºÉÏµÊıK = " << K << std::endl;
+		std::cout << "å¼¯æ›²ç–²åŠ³çš„å®é™…è½½è·ç³»æ•°K = " << K << std::endl;
 #endif 
 	}
 	std::cout << std::endl;
@@ -160,77 +163,77 @@ void Gear_Drive::setFourK(bool b,double v1) {
 
 void Gear_Drive::setTwoY(double& YFa1, double& YSa1, double z1) {
 	if (z1 < 17) {
-		std::cout << "³İÊı²»¶Ô" << std::endl;
+		std::cout << "é½¿æ•°ä¸å¯¹" << std::endl;
 		return;
 	}
 	else if (z1 < 30) {
 		int tmp1 = z1 - 17, tmp2 = z1 + 1 - 17;
-		double val1 = TwoY[tmp1][0], val2 = TwoY[tmp2][0];		//¶ÔÓ¦YFa
-		double val3 = TwoY[tmp1][1], val4 = TwoY[tmp2][1];		//¶ÔÓ¦YSa
+		double val1 = TwoY[tmp1][0], val2 = TwoY[tmp2][0];		//å¯¹åº”YFa
+		double val3 = TwoY[tmp1][1], val4 = TwoY[tmp2][1];		//å¯¹åº”YSa
 		double diff1 = val2 - val1, diff2 = val4 - val3;
-		YFa1 = val1 + diff1 * (z1 - 17 - tmp1);					 //²åÖµ·¨
+		YFa1 = val1 + diff1 * (z1 - 17 - tmp1);					 //æ’å€¼æ³•
 		YSa1 = val3 + diff2 * (z1 - 17 - tmp1);
 	}
 	else if (z1 < 50) {
 		int tmp1 = z1 - 30;
 		tmp1 /= 5;
-		int base = 30 - 17;										//»ùÊı
+		int base = 30 - 17;										//åŸºæ•°
 		int t1 = tmp1 + base, t2 = t1 + 1;
-		double val1 = TwoY[t1][0], val2 = TwoY[t2][0];			//¶ÔÓ¦YFa
-		double val3 = TwoY[t1][1], val4 = TwoY[t2][1];			//¶ÔÓ¦YSa
+		double val1 = TwoY[t1][0], val2 = TwoY[t2][0];			//å¯¹åº”YFa
+		double val3 = TwoY[t1][1], val4 = TwoY[t2][1];			//å¯¹åº”YSa
 		double diff1 = val2 - val1, diff2 = val4 - val3;
 		diff1 /= 5, diff2 /= 5;
-		YFa1 = val1 + diff1 * (z1 - 30 - tmp1 * 5);				//²åÖµ·¨
+		YFa1 = val1 + diff1 * (z1 - 30 - tmp1 * 5);				//æ’å€¼æ³•
 		YSa1 = val3 + diff2 * (z1 - 30 - tmp1 * 5);
 	}
 	else if (z1 <= 100) {
 		int tmp1 = z1 - 50;
 		tmp1 /= 10;
-		int base = 30 - 17 + 4;									//»ùÊı
+		int base = 30 - 17 + 4;									//åŸºæ•°
 		int t1 = tmp1 + base, t2 = t1 + 1;
-		double val1 = TwoY[t1][0], val2 = TwoY[t2][0];			//¶ÔÓ¦YFa
-		double val3 = TwoY[t1][1], val4 = TwoY[t2][1];			//¶ÔÓ¦YSa
+		double val1 = TwoY[t1][0], val2 = TwoY[t2][0];			//å¯¹åº”YFa
+		double val3 = TwoY[t1][1], val4 = TwoY[t2][1];			//å¯¹åº”YSa
 		double diff1 = val2 - val1, diff2 = val4 - val3;
 		diff1 /= 10, diff2 /= 10;
-		YFa1 = val1 + diff1 * (z1 - 50 - tmp1 * 10);			//²åÖµ·¨
+		YFa1 = val1 + diff1 * (z1 - 50 - tmp1 * 10);			//æ’å€¼æ³•
 		YSa1 = val3 + diff2 * (z1 - 50 - tmp1 * 10);
 	}
 	else if (z1 < 150) {
 		int base = 30 - 17 + 4 + 5;
 		int t1 = base, t2 = t1 + 1;
-		double val1 = TwoY[t1][0], val2 = TwoY[t2][0];			//¶ÔÓ¦YFa
-		double val3 = TwoY[t1][1], val4 = TwoY[t2][1];			//¶ÔÓ¦YSa
+		double val1 = TwoY[t1][0], val2 = TwoY[t2][0];			//å¯¹åº”YFa
+		double val3 = TwoY[t1][1], val4 = TwoY[t2][1];			//å¯¹åº”YSa
 		double diff1 = val2 - val1, diff2 = val4 - val3;
 		diff1 /= 50, diff2 /= 50;
-		YFa1 = val1 + diff1 * (z1 - 100);						//²åÖµ·¨
+		YFa1 = val1 + diff1 * (z1 - 100);						//æ’å€¼æ³•
 		YSa1 = val3 + diff2 * (z1 - 100);
 	}
 	else if (z1 <= 200) {
 		int base = 30 - 17 + 4 + 5 + 1;
 		int t1 = base, t2 = t1 + 1;
-		double val1 = TwoY[t1][0], val2 = TwoY[t2][0];			//¶ÔÓ¦YFa
-		double val3 = TwoY[t1][1], val4 = TwoY[t2][1];			//¶ÔÓ¦YSa
+		double val1 = TwoY[t1][0], val2 = TwoY[t2][0];			//å¯¹åº”YFa
+		double val3 = TwoY[t1][1], val4 = TwoY[t2][1];			//å¯¹åº”YSa
 		double diff1 = val2 - val1, diff2 = val4 - val3;
 		diff1 /= 50, diff2 /= 50;
-		YFa1 = val1 + diff1 * (z1 - 150);						//²åÖµ·¨
+		YFa1 = val1 + diff1 * (z1 - 150);						//æ’å€¼æ³•
 		YSa1 = val3 + diff2 * (z1 - 150);
 	}
 	else {
 		YFa1 = 2.06, YSa1 = 1.97;
 	}
 
-	//std::cout << "³İĞÎÏµÊıYFa = " << YFa1 << " " \
-		<< "Ó¦Á¦ĞŞÕıÏµÊıYSa = " << YSa1 << std::endl;
+	//std::cout << "é½¿å½¢ç³»æ•°YFa = " << YFa1 << " " \
+		<< "åº”åŠ›ä¿®æ­£ç³»æ•°YSa = " << YSa1 << std::endl;
 }
 
-void Gear_Drive::setKHaandKFa(double d) { //Ä¬ÈÏ¶ÔÓ²³İÃæµÄ³İÂÖ½øĞĞÉè¼Æ
-	//Ñ¡È¡µÍ¾«¶ÈµÄ
+void Gear_Drive::setKHaandKFa(double d) { //é»˜è®¤å¯¹ç¡¬é½¿é¢çš„é½¿è½®è¿›è¡Œè®¾è®¡
+	//é€‰å–ä½ç²¾åº¦çš„
 	int Level = std::max(part1->getLevel(), part2->getLevel());
-	v = M_PI * d * n / (60 * 1000);			//Êµ¼ÊµÄÔ²ÖÜËÙ¶È
-	double b1 = q * d;						//³İ¿í
+	v = M_PI * d * n / (60 * 1000);			//å®é™…çš„åœ†å‘¨é€Ÿåº¦
+	double b1 = q * d;						//é½¿å®½
 	Ft1 = 2 * T1 / d;
-	double thre = KA * Ft1 / b1;			//ãĞÖµ
-	if (part1->getp() > 0) {				//¶ÔĞ±³İÂÖ
+	double thre = KA * Ft1 / b1;			//é˜ˆå€¼
+	if (part1->getp() > 0) {				//å¯¹æ–œé½¿è½®
 		if (thre >= 100) {
 			switch (Level) {
 			case 7:
@@ -249,7 +252,7 @@ void Gear_Drive::setKHaandKFa(double d) { //Ä¬ÈÏ¶ÔÓ²³İÃæµÄ³İÂÖ½øĞĞÉè¼Æ
 		}
 		else KHa = KFa= 1.4;
 	}
-	else {									//¶ÔÖ±³İÂÖ
+	else {									//å¯¹ç›´é½¿è½®
 		if (thre >= 100) {
 			switch (Level) {
 			case 7:
@@ -271,37 +274,37 @@ void Gear_Drive::setKHaandKFa(double d) { //Ä¬ÈÏ¶ÔÓ²³İÃæµÄ³İÂÖ½øĞĞÉè¼Æ
 #ifdef SHOW_DETAIL
 	std::cout << "Ft1 = " << Ft1 << "N" << std::endl;
 	std::cout << "KA*Ft1/b = " << thre << "N/mm" << std::endl;
-	std::cout << "³İ¼äÔØºÉ·ÖÅäÏµÊıKa = " << KHa << std::endl;
+	std::cout << "é½¿é—´è½½è·åˆ†é…ç³»æ•°Ka = " << KHa << std::endl;
 #endif 
 }
 
-void Gear_Drive::setBasicParameter(std::ostream& os) { //»ù±¾²ÎÊı£¬²»ÓÃ²é±í
+void Gear_Drive::setBasicParameter(std::ostream& os) { //åŸºæœ¬å‚æ•°ï¼Œä¸ç”¨æŸ¥è¡¨
 	double  tmpq, tmpSH, tmpSF, tmpK;
 	double tmpu = 1;
-	os << "ÇëÊäÈë´«¶¯±Èu: " << std::endl;
+	os << "è¯·è¾“å…¥ä¼ åŠ¨æ¯”u: " << std::endl;
 	std::cin >> tmpu;
 	setu(tmpu);
-	os << "ÇëÊäÈëÊÔËãÏµÊı Kt: " << std::endl;
+	os << "è¯·è¾“å…¥è¯•ç®—ç³»æ•° Kt: " << std::endl;
 	std::cin >> tmpK;
 	setKT(tmpK);
-	os << "ÇëÊäÈë³İ¿íÏµÊı: " << std::endl;
+	os << "è¯·è¾“å…¥é½¿å®½ç³»æ•°: " << std::endl;
 	std::cin >> tmpq;
 	setq(tmpq);
-	os << "ÇëÊäÈë½Ó´¥Æ£ÀÍÇ¿¶ÈµÄ°²È«ÏµÊı(ÀıÈç1): " << std::endl;
+	os << "è¯·è¾“å…¥æ¥è§¦ç–²åŠ³å¼ºåº¦çš„å®‰å…¨ç³»æ•°(ä¾‹å¦‚1): " << std::endl;
 	std::cin >> tmpSH;
 	setSH(tmpSH);
-	os << "ÇëÊäÈëÍäÇúÆ£ÀÍÇ¿¶ÈµÄ°²È«ÏµÊı(ÀıÈç1.4): " << std::endl;
+	os << "è¯·è¾“å…¥å¼¯æ›²ç–²åŠ³å¼ºåº¦çš„å®‰å…¨ç³»æ•°(ä¾‹å¦‚1.4): " << std::endl;
 	std::cin >> tmpSF;
 	setSF(tmpSF);
 }
 
-void Gear_Drive::setLifeParameter(std::ostream& os) {	//ÓëÊÙÃüÓĞ¹ØµÄ²ÎÊı
+void Gear_Drive::setLifeParameter(std::ostream& os) {	//ä¸å¯¿å‘½æœ‰å…³çš„å‚æ•°
 	double tmpKHN1, tmpKHN2, tmpKFN1, tmpKFN2;
-	N = j*n * Lh * 60;					//×¢ÒâÀàĞÍ×ª»»
-	os << "Ğ¡ÂÖµÄ¹¤×÷Ó¦Á¦Ñ­»·´ÎÊıÊÇ£º" << N << std::endl;
-	os << "´óÂÖµÄ¹¤×÷Ó¦Á¦Ñ­»·´ÎÊıÊÇ£º" << N / u << std::endl;
-	os << "Çë¸ù¾İÕâÁ½¸öÊıÑ¡¶¨ÍäÇúºÍ½Ó´¥¶ÔÓ¦µÄÊÙÃüÏµÊı" << std::endl;
-	os << "°´ÒÔÏÂ¸ñÊ½ÊäÈë£º" << std::endl;
+	N = j*n * Lh * 60;					//æ³¨æ„ç±»å‹è½¬æ¢
+	os << "å°è½®çš„å·¥ä½œåº”åŠ›å¾ªç¯æ¬¡æ•°æ˜¯ï¼š" << N << std::endl;
+	os << "å¤§è½®çš„å·¥ä½œåº”åŠ›å¾ªç¯æ¬¡æ•°æ˜¯ï¼š" << N / u << std::endl;
+	os << "è¯·æ ¹æ®è¿™ä¸¤ä¸ªæ•°é€‰å®šå¼¯æ›²å’Œæ¥è§¦å¯¹åº”çš„å¯¿å‘½ç³»æ•°" << std::endl;
+	os << "æŒ‰ä»¥ä¸‹æ ¼å¼è¾“å…¥ï¼š" << std::endl;
 	os << "KHN1 KHN2\nKFN1 KFN2" << std::endl;
 	std::cin >> tmpKHN1 >> tmpKHN2 >> tmpKFN1 >> tmpKFN2;
 	setKHN(tmpKHN1, tmpKHN2);
@@ -310,23 +313,23 @@ void Gear_Drive::setLifeParameter(std::ostream& os) {	//ÓëÊÙÃüÓĞ¹ØµÄ²ÎÊı
 
 void Gear_Drive::setKHbParameter(std::ostream& os) {
 	int L = std::max(part1->getLevel(), part2->getLevel());
-	setLevel(L);				//È·¶¨¾«¶ÈµÈ¼¶
+	setLevel(L);				//ç¡®å®šç²¾åº¦ç­‰çº§
 	double tmpKHb, tmpKFb, tmpKA;
-	os << "Ğ¡ÂÖµÄ¿í¶ÈÏµÊıÊÇ£º " << q << std::endl;
-	os << "´«¶¯µÄ¾«¶ÈµÈ¼¶ÊÇ£º" << L << std::endl;
-	os << "Ğ¡ÂÖÄ¬ÈÏÎªÓ²³İÃæ" << std::endl;
-	os << "Çë²é±í»ñµÃ½Ó´¥Æ£ÀÍ¶ÔÓ¦µÄ³İÏòÔØºÉ·ÖÅäÏµÊı(KHb):" << std::endl;
+	os << "å°è½®çš„å®½åº¦ç³»æ•°æ˜¯ï¼š " << q << std::endl;
+	os << "ä¼ åŠ¨çš„ç²¾åº¦ç­‰çº§æ˜¯ï¼š" << L << std::endl;
+	os << "å°è½®é»˜è®¤ä¸ºç¡¬é½¿é¢" << std::endl;
+	os << "è¯·æŸ¥è¡¨è·å¾—æ¥è§¦ç–²åŠ³å¯¹åº”çš„é½¿å‘è½½è·åˆ†é…ç³»æ•°(KHb):" << std::endl;
 	std::cin >> tmpKHb;
 	setKHbandKFb(tmpKHb, 1.32);
-	os << "ÇëÊäÈëÊ¹ÓÃÏµÊıKA: " << std::endl;
+	os << "è¯·è¾“å…¥ä½¿ç”¨ç³»æ•°KA: " << std::endl;
 	std::cin >> tmpKA;
 	setKA(tmpKA);
 }
 
 void Gear_Drive::setUserChoice(std::ostream& os) {
-	setDrive(os);				//Óë´«¶¯ÓĞ¹ØµÄ²ÎÊı
-	setBasicParameter(os);		//²»ĞèÒª²é±íµÄ²ÎÊıÉè¶¨
-	setLifeParameter(os);		//ÊÙÃüÏµÊı
-	setKHbParameter(os);		//½Ó´¥Æ£ÀÍ¶ÔÓ¦µÄ³İÏòÔØºÉ·ÖÅäÏµÊı¼°Ê¹ÓÃÏµÊıKA
-	//KHaºÍKFaÒÔ¼°KFb¾ùÒªËã³ö¾ßÌå²ÎÊıÊ±²ÅÄÜµÃµ½
+	setDrive(os);				//ä¸ä¼ åŠ¨æœ‰å…³çš„å‚æ•°
+	setBasicParameter(os);		//ä¸éœ€è¦æŸ¥è¡¨çš„å‚æ•°è®¾å®š
+	setLifeParameter(os);		//å¯¿å‘½ç³»æ•°
+	//setKHbParameter(os);		//æ¥è§¦ç–²åŠ³å¯¹åº”çš„é½¿å‘è½½è·åˆ†é…ç³»æ•°åŠä½¿ç”¨ç³»æ•°KA
+	//KHaå’ŒKFaä»¥åŠKFbå‡è¦ç®—å‡ºå…·ä½“å‚æ•°æ—¶æ‰èƒ½å¾—åˆ°
 }
