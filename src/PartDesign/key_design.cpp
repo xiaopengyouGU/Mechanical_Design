@@ -2,143 +2,143 @@
 #include "key_design.h"
 
 void Key_Design::setDesign(bool b) {
-	Name = "Æ½¼üÉè¼Æ";
-	part = std::make_shared<Key>();		//·ÖÅäÄÚ´æ£¬´´½¨Áã¼ş¶ÔÏó
+	Name = "å¹³é”®è®¾è®¡";
+	part = std::make_shared<Key>();		//åˆ†é…å†…å­˜ï¼Œåˆ›å»ºé›¶ä»¶å¯¹è±¡
 	if (b)
-		setDefault();					//Ä¬ÈÏ²ÎÊıÉè¼Æ
+		setDefault();					//é»˜è®¤å‚æ•°è®¾è®¡
 	else
-		setUserChoice(std::cout);		//ÓÃ»§²ÎÓëÉè¼Æ
-	testStrength(std::cout);			//Ğ£ºËÇ¿¶È
+		setUserChoice(std::cout);		//ç”¨æˆ·å‚ä¸è®¾è®¡
+	testStrength(std::cout);			//æ ¡æ ¸å¼ºåº¦
 }
 
-void Key_Design::setUserChoice(ostream& os) {	//È·¶¨¼üµÄĞÅÏ¢
+void Key_Design::setUserChoice(ostream& os) {	//ç¡®å®šé”®çš„ä¿¡æ¯
 	double tmpd, tmpb, tmpT, tmpbs, tmpL;
 	string str;
-	os << "ÇëÊäÈëÖáµÄÖ±¾¶£º" << std::endl;
+	os << "è¯·è¾“å…¥è½´çš„ç›´å¾„ï¼š" << std::endl;
 	std::cin >> tmpd;
 	setd(tmpd);
-	os << "ÇëÊäÈëÂÖì±µÄ¿í¶È£º" << std::endl;
+	os << "è¯·è¾“å…¥è½®æ¯‚çš„å®½åº¦ï¼š" << std::endl;
 	std::cin >> tmpb;
 	setb(tmpb);
-	os << "ÇëÊäÈëĞè´«µİµÄ×ª¾Ø£º" << std::endl;
+	os << "è¯·è¾“å…¥éœ€ä¼ é€’çš„è½¬çŸ©ï¼š" << std::endl;
 	std::cin >> tmpT;
 	setT(tmpT);
-	os << "ÇëÊäÈëÔØºÉµÄĞÔÖÊ(¾²ÔØºÉ£¬ÇáÎ¢³å»÷£¬³å»÷): " << std::endl;
-	std::cin >> str;							//Ö±½ÓÊäÈëLoadÒ²ĞĞ
+	os << "è¯·è¾“å…¥è½½è·çš„æ€§è´¨(é™è½½è·ï¼Œè½»å¾®å†²å‡»ï¼Œå†²å‡»): " << std::endl;
+	std::cin >> str;							//ç›´æ¥è¾“å…¥Loadä¹Ÿè¡Œ
 	setLoad(str);								
-	os << "ÈıÖÖÔØºÉ¶ÔÓ¦µÄĞíÓÃ¼·Ñ¹Ó¦Á¦·Ö±ğÎª£º" << std::endl;
-	os << "¾²ÔØºÉ 120-150	\tÇáÎ¢³å»÷100-120	\t³å»÷60-90" << std::endl;
-	os << "ÇëÊäÈë¶ÔÓ¦µÄĞíÓÃ¼·Ñ¹Ó¦Á¦£º" << std::endl;
+	os << "ä¸‰ç§è½½è·å¯¹åº”çš„è®¸ç”¨æŒ¤å‹åº”åŠ›åˆ†åˆ«ä¸ºï¼š" << std::endl;
+	os << "é™è½½è· 120-150	\tè½»å¾®å†²å‡»100-120	\tå†²å‡»60-90" << std::endl;
+	os << "è¯·è¾“å…¥å¯¹åº”çš„è®¸ç”¨æŒ¤å‹åº”åŠ›ï¼š" << std::endl;
 	std::cin >> tmpbs;
 	setbs(tmpbs);
-	setKeybandh(os);							//È·¶¨¼ü³¤ºÍ¼ü¿í
-	showPossibleL(os);							//Êä³ö¼üµÄ³¤¶ÈÏµÁĞ
-	os << "ÇëÊäÈë¼üµÄ³¤¶ÈL: " << std::endl;
+	setKeybandh(os);							//ç¡®å®šé”®é•¿å’Œé”®å®½
+	showPossibleL(os);							//è¾“å‡ºé”®çš„é•¿åº¦ç³»åˆ—
+	os << "è¯·è¾“å…¥é”®çš„é•¿åº¦L: " << std::endl;
 	std::cin >> tmpL;
 	part->setL(tmpL);
 }
 
 void Key_Design::setDefault() {
-	//É¶¶¼²»×ö
+	//å•¥éƒ½ä¸åš
 }
 
-void Key_Design::testStrength(std::ostream& os) {	//Ç¿¶ÈĞ£ºË
+void Key_Design::testStrength(std::ostream& os) {	//å¼ºåº¦æ ¡æ ¸
 	double h = part->geth(), l = part->getl(), b = part->getb();
 	double tmpbs = 4000.0 * T / (h * l * d), tmp;
 	while (tmpbs > bs) {
-		os << "µ±Ç°¼·Ñ¹Ó¦Á¦Îª£º" << tmpbs << "Mpa" << std::endl;
-		os << "Á¬½ÓµÄ¼·Ñ¹Ç¿¶È²»¹»£¬¼ü»á±»Ñ¹À££¡" << std::endl;
-		os << "Çëµ÷Õû¼üµÄ³¤¶ÈL£¬Ô­Ê¼Öµ:" << part->getL() << std::endl;
-		showPossibleL(os);							//ÏÔÊ¾¼üµÄ³¤¶ÈĞòÁĞ
+		os << "å½“å‰æŒ¤å‹åº”åŠ›ä¸ºï¼š" << tmpbs << "Mpa" << std::endl;
+		os << "è¿æ¥çš„æŒ¤å‹å¼ºåº¦ä¸å¤Ÿï¼Œé”®ä¼šè¢«å‹æºƒï¼" << std::endl;
+		os << "è¯·è°ƒæ•´é”®çš„é•¿åº¦Lï¼ŒåŸå§‹å€¼:" << part->getL() << std::endl;
+		showPossibleL(os);							//æ˜¾ç¤ºé”®çš„é•¿åº¦åºåˆ—
 		std::cin >> tmp;
 		part->setL(tmp);
-		l = tmp - b;						//¼üµÄÓĞĞ§³¤¶È
-		tmpbs = 4000.0 * T / (h * l * d), tmp;
+		l = tmp - b;						//é”®çš„æœ‰æ•ˆé•¿åº¦
+		tmpbs = 4000.0 * T / (h * l * d)/tmp;
 	}
-	os << "¼üµÄÇ¿¶È×ã¹»!" << std::endl;
+	os << "é”®çš„å¼ºåº¦è¶³å¤Ÿ!" << std::endl;
 }
 
 void Key_Design::showPossibleL(std::ostream& os) {
-	os << "¼üµÄ³¤¶ÈÏµÁĞL: " << std::endl;
+	os << "é”®çš„é•¿åº¦ç³»åˆ—L: " << std::endl;
 	os << "6, 8, 10, 12, 14, 16, 18, 20, 22, 25, 28, 32, 36" << std::endl;
 	os << "40, 45, 50, 56, 63, 70, 80, 90, 100, 110, 125, 140" << std::endl;
 	os << "160, 180, 200, 250, 280, 320, 360, ..." << std::endl;
 }
 
 void Key_Design::showDesignInfo(std::ostream & os) {
-	os << "Æ½¼üµÄÖ÷ÒªÉè¼Æ²ÎÊıÈçÏÂ£º" << std::endl;
-	os << "ÔØºÉĞÔÖÊ £º" << Load << std::endl;
+	os << "å¹³é”®çš„ä¸»è¦è®¾è®¡å‚æ•°å¦‚ä¸‹ï¼š" << std::endl;
+	os << "è½½è·æ€§è´¨ ï¼š" << Load << std::endl;
 	part->showInfo(os);
 	time(&timer);
-	os << "Éè¼Æ±àºÅ£º" << Num << std::endl;
-	os << "µ±Ç°Ê±¼ä£º" << ctime(&timer) << std::endl;
+	os << "è®¾è®¡ç¼–å·ï¼š" << Num << std::endl;
+	os << "å½“å‰æ—¶é—´ï¼š" << ctime(&timer) << std::endl;
 }
 
-void Key_Design::setKeybandh(std::ostream&os) {	//È·¶¨¼üµÄ×îÖÕ²ÎÊı
+void Key_Design::setKeybandh(std::ostream&os) {	//ç¡®å®šé”®çš„æœ€ç»ˆå‚æ•°
 	double b = 8, h = 7;
 	if (d <= 8) {
 		b = 2, h = 2;
-		os << "¼üµÄ³¤¶È·¶Î§£º6-20" << std::endl;
+		os << "é”®çš„é•¿åº¦èŒƒå›´ï¼š6-20" << std::endl;
 	}
 	else if (d <= 10) {
 		b = 3, h = 3;
-		os << "¼üµÄ³¤¶È·¶Î§£º6-36" << std::endl;
+		os << "é”®çš„é•¿åº¦èŒƒå›´ï¼š6-36" << std::endl;
 	}
 	else if (d <= 12) {
 		b = 4, h = 4;
-		os << "¼üµÄ³¤¶È·¶Î§£º8-45" << std::endl;
+		os << "é”®çš„é•¿åº¦èŒƒå›´ï¼š8-45" << std::endl;
 	}
 	else if (d <= 17) {
 		b = 5, h = 5;
-		os << "¼üµÄ³¤¶È·¶Î§£º10-56" << std::endl;
+		os << "é”®çš„é•¿åº¦èŒƒå›´ï¼š10-56" << std::endl;
 	}
 	else if (d <= 22) {
 		b = 6, h = 6;
-		os << "¼üµÄ³¤¶È·¶Î§£º14-70" << std::endl;
+		os << "é”®çš„é•¿åº¦èŒƒå›´ï¼š14-70" << std::endl;
 	}
 	else if (d <= 30) {
 		b = 8, h = 7;
-		os << "¼üµÄ³¤¶È·¶Î§£º18-90" << std::endl;
+		os << "é”®çš„é•¿åº¦èŒƒå›´ï¼š18-90" << std::endl;
 	}
 	else if (d <= 38) {
 		b = 10, h = 8;
-		os << "¼üµÄ³¤¶È·¶Î§£º22-110" << std::endl;
+		os << "é”®çš„é•¿åº¦èŒƒå›´ï¼š22-110" << std::endl;
 	}
 	else if (d <= 44) {
 		b = 12, h = 8;
-		os << "¼üµÄ³¤¶È·¶Î§£º28-140" << std::endl;
+		os << "é”®çš„é•¿åº¦èŒƒå›´ï¼š28-140" << std::endl;
 	}
 	else if (d <= 50) {
 		b = 14, h = 9;
-		os << "¼üµÄ³¤¶È·¶Î§£º36-160" << std::endl;
+		os << "é”®çš„é•¿åº¦èŒƒå›´ï¼š36-160" << std::endl;
 	}
 	else if (d <= 58) {
 		b = 16, h = 10;
-		os << "¼üµÄ³¤¶È·¶Î§£º45-180" << std::endl;
+		os << "é”®çš„é•¿åº¦èŒƒå›´ï¼š45-180" << std::endl;
 	}
 	else if (d <= 65) {
 		b = 18, h = 11;
-		os << "¼üµÄ³¤¶È·¶Î§£º50-200" << std::endl;
+		os << "é”®çš„é•¿åº¦èŒƒå›´ï¼š50-200" << std::endl;
 	}
 	else if (d <= 75) {
 		b = 20, h = 12;
-		os << "¼üµÄ³¤¶È·¶Î§£º56-220" << std::endl;
+		os << "é”®çš„é•¿åº¦èŒƒå›´ï¼š56-220" << std::endl;
 	}
 	else if (d <= 85) {
 		b = 22, h = 14;
-		os << "¼üµÄ³¤¶È·¶Î§£º63-250" << std::endl;
+		os << "é”®çš„é•¿åº¦èŒƒå›´ï¼š63-250" << std::endl;
 	}
 	else if (d <= 95) {
 		b = 25, h = 14;
-		os << "¼üµÄ³¤¶È·¶Î§£º70-280" << std::endl;
+		os << "é”®çš„é•¿åº¦èŒƒå›´ï¼š70-280" << std::endl;
 	}
 	else if (d <= 110) {
 		b = 28, h = 16;
-		os << "¼üµÄ³¤¶È·¶Î§£º80-320" << std::endl;
+		os << "é”®çš„é•¿åº¦èŒƒå›´ï¼š80-320" << std::endl;
 	}
 	else if (d <= 130) {
 		b = 32, h = 18;
-		os << "¼üµÄ³¤¶È·¶Î§£º90-360" << std::endl;
+		os << "é”®çš„é•¿åº¦èŒƒå›´ï¼š90-360" << std::endl;
 	}
-	part->setb(b), part->seth(h);				//¼ü¿íºÍ¼ü¸ßÈ·¶¨
+	part->setb(b), part->seth(h);				//é”®å®½å’Œé”®é«˜ç¡®å®š
 }
