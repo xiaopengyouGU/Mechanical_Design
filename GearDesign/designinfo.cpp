@@ -6,3 +6,9 @@ DesignInfo::DesignInfo(QObject *parent):QObject(parent)
 {
 
 }
+
+DesignUI::~DesignUI(){}
+DesignUI::DesignUI(QWidget *parent):QMainWindow(parent)
+{
+
+}

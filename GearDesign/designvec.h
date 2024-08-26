@@ -25,6 +25,9 @@ signals:
 
 class Design : public QObject{  //抽象基类
     Q_OBJECT
+protected:
+    DesignInfo* m_info; //设计信息
+    DesignUI* m_UI;     //设计UI
 public:
     explicit Design(QObject *parent = nullptr);
     virtual void startDesign() = 0;       //开始设计,纯虚函数
@@ -38,9 +41,9 @@ public:
     void startDesign() ;       //开始设计,纯虚函数
     DesignInfo* info()const {return m_info;}//返回设计信息
 
-private:
+/*private:
     GearDesignUI *m_UI;
-    DesignInfo* m_info = nullptr;
+    DesignInfo* m_info = nullptr;*/
 };
 
 class AxleDesign : public Design{
@@ -49,9 +52,9 @@ public:
     explicit AxleDesign(QObject *parent = nullptr);
     void startDesign() ;       //开始设计,纯虚函数
     DesignInfo* info()const { return m_info;}//返回设计信息
-private:
+/*private:
     AxleDesignUI* m_UI;
-    DesignInfo* m_info = nullptr;
+    DesignInfo* m_info = nullptr;*/
 };
 
 class KeyDesign : public Design{
@@ -60,9 +63,9 @@ public:
     explicit KeyDesign(QObject *parent = nullptr);
     void startDesign() ;       //开始设计,纯虚函数
     DesignInfo* info()const { return m_info;}//返回设计信息
-private:
+/*private:
     KeyDesignUI* m_UI;
-    DesignInfo* m_info = nullptr;
+    DesignInfo* m_info = nullptr;*/
 };
 
 class BearingDesign : public Design{
@@ -71,9 +74,9 @@ public:
     explicit BearingDesign(QObject *parent = nullptr);
     void startDesign();       //开始设计,纯虚函数
     DesignInfo* info()const { return m_info;}//返回设计信息
-private:
+/*private:
     BearingDesignUI *m_UI;
-    DesignInfo* m_info = nullptr;
+    DesignInfo* m_info = nullptr;*/
 };
 
 

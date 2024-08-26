@@ -2,7 +2,7 @@
 #include "ui_axledesignui.h"
 #include <QMessageBox>
 AxleDesignUI::AxleDesignUI(QWidget *parent)
-    : QMainWindow(parent)
+    : DesignUI(parent)
     , ui(new Ui::AxleDesignUI)
 {
     ui->setupUi(this);

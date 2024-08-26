@@ -7,11 +7,11 @@ namespace Ui {
 class AxleDesignUI;
 }
 
-class AxleDesignUI : public QMainWindow
+class AxleDesignUI : public DesignUI
 {
     Q_OBJECT
 private:
-    DesignInfo* m_info;     //设计类
+    //DesignInfo* m_info;     //设计类
     bool state = false;     //设计状态
 public:
     explicit AxleDesignUI(QWidget *parent = nullptr);

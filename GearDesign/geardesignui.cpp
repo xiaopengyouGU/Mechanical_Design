@@ -37,7 +37,7 @@ void GearDesignUI::startDesign(DesignInfo *info)
 }
 
 GearDesignUI::GearDesignUI(QWidget *parent)
-    : QMainWindow(parent)
+    : DesignUI(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);

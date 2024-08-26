@@ -53,7 +53,7 @@ void DesignVec::deleteDesign(int index)
 
 GearDesign::GearDesign(QObject *parent):Design(parent)
 {
-    m_info = new DesignInfo(this);  //创建设计信息变量
+
 }
 
 void GearDesign::startDesign()
@@ -65,7 +65,7 @@ void GearDesign::startDesign()
 
 AxleDesign::AxleDesign(QObject *parent):Design(parent)
 {
-    m_info = new DesignInfo(this);  //创建设计信息变量
+
 }
 
 void AxleDesign::startDesign()
@@ -77,7 +77,6 @@ void AxleDesign::startDesign()
 
 KeyDesign::KeyDesign(QObject *parent):Design(parent)
 {
-    m_info = new DesignInfo(parent);  //创建设计信息变量
 }
 
 void KeyDesign::startDesign()
@@ -89,7 +88,6 @@ void KeyDesign::startDesign()
 
 BearingDesign::BearingDesign(QObject *parent):Design(parent)
 {
-    m_info = new DesignInfo(this);  //创建设计信息变量
 }
 
 void BearingDesign::startDesign()
@@ -101,4 +99,5 @@ void BearingDesign::startDesign()
 
 Design::Design(QObject *parent):QObject(parent)
 {
+    m_info = new DesignInfo(parent);
 }

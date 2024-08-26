@@ -2,7 +2,7 @@
 #include "ui_bearingdesignui.h"
 #include <QMessageBox>
 BearingDesignUI::BearingDesignUI(QWidget *parent)
-    : QMainWindow(parent)
+    : DesignUI(parent)
     , ui(new Ui::BearingDesignUI)
 {
     ui->setupUi(this);

@@ -14,11 +14,11 @@ class MainWindow;
 }
 QT_END_NAMESPACE
 
-class GearDesignUI : public QMainWindow
+class GearDesignUI : public DesignUI
 {
     Q_OBJECT
 private:
-    DesignInfo* m_info = nullptr;       //设计信息
+    //DesignInfo* m_info = nullptr;       //设计信息
     bool c_state = false;       //接触设计状态:等待输入与否
     bool b_state = false;       //弯曲设计状态:等待输入与否
     double m_dt  = 0;            //设计分度圆半径

@@ -2,7 +2,7 @@
 #include "ui_keydesignui.h"
 #include <QMessageBox>
 KeyDesignUI::KeyDesignUI(QWidget *parent)
-    : QMainWindow(parent)
+    : DesignUI(parent)
     , ui(new Ui::KeyDesignUI)
 {
     ui->setupUi(this);

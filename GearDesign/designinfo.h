@@ -2,7 +2,8 @@
 #define DESIGNINFO_H
 
 #include <QObject>
-
+#include <QMainWindow>
+//设计信息类
 class DesignInfo : public QObject
 {
     Q_OBJECT
@@ -29,6 +30,18 @@ public:
     void setDetailedInfo(QStringList detailed) { m_detailedInfo = detailed;}
     void appendInfo(QString& str) { m_detailedInfo << str;} //添加信息
     void clearInfo(){m_info = "", m_detailedInfo.clear();}  //清空信息
+};
+//设计UI类
+class DesignUI : public QMainWindow{
+    Q_OBJECT
+protected:
+    DesignInfo* m_info;
+public:
+    explicit DesignUI(QWidget *parent = nullptr);
+    ~DesignUI();
+    virtual void startDesign(DesignInfo* info){} //两个虚函数
+protected:
+    virtual void reFresh(){}
 };
 
 #endif // DESIGNINFO_H
