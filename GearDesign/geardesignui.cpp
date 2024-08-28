@@ -1,6 +1,8 @@
 #include "geardesignui.h"
 #include "./ui_geardesignui.h"
-
+#include <QFileDialog>
+#include <QFile>
+#include <QDir>
 void GearDesignUI::reFresh()
 {   //刷新UI界面
     ui->btnKHa->setEnabled(false);
@@ -446,7 +448,7 @@ void GearDesignUI::on_btnYSa_clicked()
 
 void GearDesignUI::on_actStart_triggered()
 {
-    m_info = new DesignInfo(this);    //创建信息变量
+    //m_info = new DesignInfo(this);    //创建信息变量
     reFresh();                        //重置UI界面
     on_btnGetT_clicked();             //计算力矩
     //分别按接触强度和弯曲强度设计
@@ -564,12 +566,13 @@ void GearDesignUI::on_btn_a_clicked()
     //其他参数获取,用于设计库显示
     m_info->setType("齿轮设计");
     m_info->setLevel(ui->spinLevel->value());
-    m_info->setMaterial("小齿轮采用"+str + "\t" + "大齿轮采用"+str1);
+    m_info->setMaterial(str +"(小)" +" "+str1+"(大)");
     //显示Message
     QMessageBox::information(this,"消息","设计结束,显示主要设计信息");
     ui->textEdit->clear();
     ui->textEdit->appendPlainText(info);
-
+    //发送信号
+    emit finishDesign();
 }
 
 
@@ -593,6 +596,35 @@ void GearDesignUI::on_actShow_triggered()
     if(c_state && b_state){
         ui->textEdit->clear();      //清空文本框
         ui->textEdit->appendPlainText(m_info->info());
+    }
+    else{
+        QMessageBox::warning(this,"警告","设计未完成");
+    }
+}
+
+
+void GearDesignUI::on_actOutput_triggered()
+{//输出详细设计信息到文件中
+    if(c_state && b_state){
+        QString curPath = QDir::currentPath();
+        QString dlgTitle = "另存为一个文件";
+        QString filter = "文本文件(*.txt);;所有文件(*.*)";
+        QString aFileName = QFileDialog::getSaveFileName(this,dlgTitle,curPath,filter);
+        if(aFileName.isEmpty())
+            return;
+        //利用QFile输出设计信息
+        QFile aFile(aFileName);
+        if(!aFile.open(QIODevice::WriteOnly | QIODevice::Text))
+            return;
+        QString str = "*******齿轮设计的详细信息*******\n";
+        for(int i = 0; i < m_info->detailedInfo().count();i++){
+            str += m_info->detailedInfo().at(i);
+            str += "\n";
+        }
+        QByteArray strBytes = str.toUtf8();
+        aFile.write(strBytes,strBytes.length());
+        aFile.close();
+        QMessageBox::information(this,"信息","设计信息输出完毕");
     }
     else{
         QMessageBox::warning(this,"警告","设计未完成");

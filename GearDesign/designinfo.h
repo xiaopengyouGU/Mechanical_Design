@@ -36,6 +36,8 @@ class DesignUI : public QMainWindow{
     Q_OBJECT
 protected:
     DesignInfo* m_info;
+signals:
+    void finishDesign();        //完成设计信号
 public:
     explicit DesignUI(QWidget *parent = nullptr);
     ~DesignUI();

@@ -102,6 +102,7 @@ void BearingDesignUI::calcLife()
         m_info->setMaterial("轴承钢");
         ui->textEdit->appendPlainText(str);
         state = true;           //更新设计状态
+        emit finishDesign();    //发送信号
     }
     else{
         QMessageBox::warning(this,"警告","轴承的寿命不够\n请更改轴承型号");
@@ -127,7 +128,7 @@ void BearingDesignUI::reFresh()
 
 void BearingDesignUI::on_actStart_triggered()
 {
-    m_info = new DesignInfo(this);
+    //m_info = new DesignInfo(this);
     reFresh();
     calcLife();         //校核轴承寿命
 }

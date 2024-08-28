@@ -23,11 +23,14 @@ private:
     bool b_state = false;       //弯曲设计状态:等待输入与否
     double m_dt  = 0;            //设计分度圆半径
     double m_mt = 0;             //设计模数
+//完成设计后发送信号
 public:
     void startDesign(DesignInfo* info);     //唯一的公共接口
     GearDesignUI(QWidget *parent = nullptr);
     ~GearDesignUI();
 private slots:
+    void on_btn_a_clicked();        //结束最终设计的函数
+
     void on_btnKHV_clicked();
 
     void on_btnKA_clicked();
@@ -74,11 +77,11 @@ private slots:
 
     void on_btn_m_clicked();
 
-    void on_btn_a_clicked();        //结束最终设计的函数
-
     void on_actShowAll_triggered();
 
     void on_actShow_triggered();
+
+    void on_actOutput_triggered();
 
 private:
     void Contact_Fatigue_Design();  //接触疲劳强度

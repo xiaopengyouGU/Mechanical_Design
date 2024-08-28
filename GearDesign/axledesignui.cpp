@@ -92,7 +92,7 @@ void AxleDesignUI::reFresh()
 
 void AxleDesignUI::on_actStart_triggered()
 {
-    m_info = new DesignInfo(this);
+    //m_info = new DesignInfo(this);
     reFresh();
     calcOF();         //校核轴的强度
 }
@@ -150,6 +150,7 @@ void AxleDesignUI::calcOF()
         m_info->setMaterial(ui->editMat->text());
         ui->textEdit->appendPlainText(str);
         state = true;           //更新设计状态
+        emit finishDesign();    //发送信号
     }
     else{
         QMessageBox::warning(this,"警告","轴的强度不够");

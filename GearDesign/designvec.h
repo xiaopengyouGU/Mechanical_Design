@@ -6,6 +6,7 @@
 #include "axledesignui.h"
 #include <QObject>
 //设计表类
+//将设计表类编译成库文件也行
 class Design;
 class DesignVec : public QObject
 {
@@ -19,8 +20,12 @@ public:
     void addDesign(int type);           //添加设计
     void deleteDesign(int index);       //删除设计
     void deleteAll(){m_vec.clear();}    //删除所有设计
+    DesignInfo* infoFromIndex(int index);   //返回设计信息指针
     enum DesignType {TGearDesign, TAxleDesign, TBearingDesign, TKeyDesign};//枚举变量
 signals:
+    void finishADesign(int index);       //完成一个设计后，自动发送该信号
+private slots:
+    void do_finishADesign();    //对应的槽函数
 };
 
 class Design : public QObject{  //抽象基类
@@ -28,6 +33,10 @@ class Design : public QObject{  //抽象基类
 protected:
     DesignInfo* m_info; //设计信息
     DesignUI* m_UI;     //设计UI
+signals:    //发送信号
+    void finishADesign();   //完成设计
+public slots:
+    void do_finishDesign();
 public:
     explicit Design(QObject *parent = nullptr);
     virtual void startDesign() = 0;       //开始设计,纯虚函数
@@ -40,10 +49,6 @@ public:
     explicit GearDesign(QObject *parent = nullptr);
     void startDesign() ;       //开始设计,纯虚函数
     DesignInfo* info()const {return m_info;}//返回设计信息
-
-/*private:
-    GearDesignUI *m_UI;
-    DesignInfo* m_info = nullptr;*/
 };
 
 class AxleDesign : public Design{
@@ -52,9 +57,6 @@ public:
     explicit AxleDesign(QObject *parent = nullptr);
     void startDesign() ;       //开始设计,纯虚函数
     DesignInfo* info()const { return m_info;}//返回设计信息
-/*private:
-    AxleDesignUI* m_UI;
-    DesignInfo* m_info = nullptr;*/
 };
 
 class KeyDesign : public Design{
@@ -63,9 +65,6 @@ public:
     explicit KeyDesign(QObject *parent = nullptr);
     void startDesign() ;       //开始设计,纯虚函数
     DesignInfo* info()const { return m_info;}//返回设计信息
-/*private:
-    KeyDesignUI* m_UI;
-    DesignInfo* m_info = nullptr;*/
 };
 
 class BearingDesign : public Design{
@@ -74,9 +73,6 @@ public:
     explicit BearingDesign(QObject *parent = nullptr);
     void startDesign();       //开始设计,纯虚函数
     DesignInfo* info()const { return m_info;}//返回设计信息
-/*private:
-    BearingDesignUI *m_UI;
-    DesignInfo* m_info = nullptr;*/
 };
 
 

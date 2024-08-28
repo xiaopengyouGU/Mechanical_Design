@@ -44,6 +44,7 @@ void KeyDesignUI::calcObs()
         str = str + "设计条件:\n";
         str = str + QString::asprintf("传递的转矩T = %.1f N*m \n",T);
         str = str + QString::asprintf("轴的直径d = %.0f mm\n",d);
+        str = str + "载荷性质：" + ui->comboBox->currentText() + "\n";
         str = str + QString::asprintf("许用挤压应力[Obs] = %.0f Mpa\n",Obs);
         str = str + "**********************\n";
         str = str + QString::asprintf("键宽b= %.0f mm, 键高h = %.0f mm, 键长L = %.0f mm\n",b,h,L);
@@ -56,6 +57,7 @@ void KeyDesignUI::calcObs()
         m_info->setMaterial("45钢");
         ui->textEdit->appendPlainText(str);
         state = true;           //更新设计状态
+        emit finishDesign();    //发送信号
     }
 }
 
@@ -143,7 +145,7 @@ void KeyDesignUI::on_btnLoad_clicked()
 
 void KeyDesignUI::on_actStart_triggered()
 {
-    m_info = new DesignInfo(this);
+    //m_info = new DesignInfo(this);
     reFresh();  //刷新UI
     calcObs();  //校核强度
 }

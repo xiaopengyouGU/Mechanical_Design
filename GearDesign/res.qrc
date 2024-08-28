@@ -36,5 +36,14 @@
         <file>images/Axle_Test.png</file>
         <file>images/Axle_TT.png</file>
         <file>images/Axle_KA.png</file>
+        <file>images/axle.jpg</file>
+        <file>images/bearing.jpg</file>
+        <file>images/delfold1.bmp</file>
+        <file>images/gear.jpg</file>
+        <file>images/key.jpg</file>
+        <file>images/open3.bmp</file>
+        <file>images/save1.bmp</file>
+        <file>images/ubdo.bmp</file>
+        <file>images/icon.png</file>
     </qresource>
 </RCC>

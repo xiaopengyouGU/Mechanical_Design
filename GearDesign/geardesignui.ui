@@ -28,7 +28,7 @@
         <property name="geometry">
          <rect>
           <x>0</x>
-          <y>-64</y>
+          <y>0</y>
           <width>446</width>
           <height>563</height>
          </rect>
@@ -846,6 +846,7 @@
    <addaction name="actContinue"/>
    <addaction name="separator"/>
    <addaction name="actShowAll"/>
+   <addaction name="actOutput"/>
    <addaction name="actShow"/>
    <addaction name="actClear"/>
    <addaction name="separator"/>
@@ -936,6 +937,21 @@
    </property>
    <property name="toolTip">
     <string>继续进行设计</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+  <action name="actOutput">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/images/images/delfold1.bmp</normaloff>:/images/images/delfold1.bmp</iconset>
+   </property>
+   <property name="text">
+    <string>输出详细信息</string>
+   </property>
+   <property name="toolTip">
+    <string>输出详细信息到文件</string>
    </property>
    <property name="menuRole">
     <enum>QAction::MenuRole::NoRole</enum>
