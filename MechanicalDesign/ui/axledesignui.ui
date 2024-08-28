@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AxleDesignUI</class>
+ <widget class="QMainWindow" name="AxleDesignUI">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>445</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>轴UI设计</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout_5">
+    <item>
+     <widget class="QSplitter" name="splitter_2">
+      <property name="orientation">
+       <enum>Qt::Orientation::Horizontal</enum>
+      </property>
+      <widget class="QScrollArea" name="scrollArea">
+       <property name="widgetResizable">
+        <bool>true</bool>
+       </property>
+       <widget class="QWidget" name="scrollAreaWidgetContents">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>364</width>
+          <height>389</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_4">
+         <item>
+          <widget class="QGroupBox" name="groupBox_3">
+           <property name="title">
+            <string>设计参数(一)</string>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_2" columnstretch="1,1,1,1">
+            <item row="2" column="3">
+             <widget class="QDoubleSpinBox" name="spin_d">
+              <property name="decimals">
+               <number>1</number>
+              </property>
+              <property name="maximum">
+               <double>500.000000000000000</double>
+              </property>
+              <property name="value">
+               <double>50.200000000000003</double>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QPushButton" name="btn_a">
+              <property name="text">
+               <string>折合系数</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QPushButton" name="btnMat">
+              <property name="text">
+               <string>材料</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QLineEdit" name="editMat">
+              <property name="text">
+               <string>45</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QDoubleSpinBox" name="spin_a">
+              <property name="decimals">
+               <number>1</number>
+              </property>
+              <property name="value">
+               <double>0.600000000000000</double>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="2" colspan="2">
+             <widget class="QDoubleSpinBox" name="spinW">
+              <property name="maximum">
+               <double>12000000.000000000000000</double>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0" colspan="2">
+             <widget class="QPushButton" name="btnW">
+              <property name="text">
+               <string>抗弯截面系数W(mm^3)</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="3">
+             <widget class="QDoubleSpinBox" name="spinAo">
+              <property name="decimals">
+               <number>0</number>
+              </property>
+              <property name="maximum">
+               <double>500.000000000000000</double>
+              </property>
+              <property name="value">
+               <double>112.000000000000000</double>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="2">
+             <widget class="QPushButton" name="btnAo">
+              <property name="text">
+               <string>Ao</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="2">
+             <widget class="QPushButton" name="btn_d">
+              <property name="text">
+               <string>最小轴直径</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_4">
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>点击按钮即可进行查表操作，按顺序输入参数</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="groupBox_4">
+           <property name="title">
+            <string>设计参数(二)</string>
+           </property>
+           <layout class="QGridLayout" name="gridLayout" columnstretch="1,1,1,1">
+            <item row="0" column="1">
+             <widget class="QDoubleSpinBox" name="spin_n">
+              <property name="maximum">
+               <double>5000.000000000000000</double>
+              </property>
+              <property name="value">
+               <double>93.609999999999999</double>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="3">
+             <widget class="QDoubleSpinBox" name="spinOF">
+              <property name="decimals">
+               <number>1</number>
+              </property>
+              <property name="maximum">
+               <double>150.000000000000000</double>
+              </property>
+              <property name="value">
+               <double>60.000000000000000</double>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLabel" name="label">
+              <property name="text">
+               <string>轴转速(r/min)</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="2">
+             <widget class="QLabel" name="label_3">
+              <property name="text">
+               <string>传递的转矩(N*mm)</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QDoubleSpinBox" name="spinM">
+              <property name="decimals">
+               <number>0</number>
+              </property>
+              <property name="maximum">
+               <double>5000000.000000000000000</double>
+              </property>
+              <property name="value">
+               <double>270938.000000000000000</double>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="2" colspan="2">
+             <widget class="QPushButton" name="btnCalcT">
+              <property name="text">
+               <string>计算转矩(直接输入转矩也行)</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="label_6">
+              <property name="text">
+               <string>危险截面处弯矩（N*mm）</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="3">
+             <widget class="QDoubleSpinBox" name="spin_T">
+              <property name="decimals">
+               <number>0</number>
+              </property>
+              <property name="maximum">
+               <double>50000000.000000000000000</double>
+              </property>
+              <property name="value">
+               <double>2200.000000000000000</double>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="2">
+             <widget class="QPushButton" name="btnOF">
+              <property name="text">
+               <string>许用弯曲应力(Mpa)</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="label_2">
+              <property name="text">
+               <string>传递的功率(KW)</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QDoubleSpinBox" name="spin_P">
+              <property name="value">
+               <double>9.410000000000000</double>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_5">
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>按第三强度校核,考虑载荷性质</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="groupBox_5">
+           <property name="title">
+            <string>其他图表</string>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <item>
+             <widget class="QPushButton" name="btnChart">
+              <property name="text">
+               <string>示例弯矩图</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnTestT">
+              <property name="text">
+               <string>扭转强度校核流程</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnNote">
+              <property name="text">
+               <string>注意事项</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnKA">
+              <property name="text">
+               <string>联轴器工作系数</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+      <widget class="QSplitter" name="splitter">
+       <property name="orientation">
+        <enum>Qt::Orientation::Vertical</enum>
+       </property>
+       <widget class="QGroupBox" name="groupBox">
+        <property name="title">
+         <string>设计图表</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
+          <widget class="QScrollArea" name="scrollArea_2">
+           <property name="widgetResizable">
+            <bool>true</bool>
+           </property>
+           <widget class="QWidget" name="scrollAreaWidgetContents_2">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>977</width>
+              <height>250</height>
+             </rect>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_3">
+             <item>
+              <widget class="QLabel" name="labPic">
+               <property name="text">
+                <string/>
+               </property>
+               <property name="pixmap">
+                <pixmap resource="res.qrc">:/images/images/Axle_t.png</pixmap>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_2">
+        <property name="title">
+         <string>输出文本框</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item>
+          <widget class="QPlainTextEdit" name="textEdit"/>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actStart"/>
+   <addaction name="separator"/>
+   <addaction name="actShow"/>
+   <addaction name="actClear"/>
+   <addaction name="separator"/>
+   <addaction name="actExit"/>
+  </widget>
+  <action name="actStart">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/images/images/wizard24.png</normaloff>:/images/images/wizard24.png</iconset>
+   </property>
+   <property name="text">
+    <string>开始设计</string>
+   </property>
+   <property name="toolTip">
+    <string>开始轴的设计</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+  <action name="actShow">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/images/images/704.bmp</normaloff>:/images/images/704.bmp</iconset>
+   </property>
+   <property name="text">
+    <string>显示设计</string>
+   </property>
+   <property name="toolTip">
+    <string>显示设计</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+  <action name="actClear">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/images/images/103.bmp</normaloff>:/images/images/103.bmp</iconset>
+   </property>
+   <property name="text">
+    <string>清除输出</string>
+   </property>
+   <property name="toolTip">
+    <string>清除输出</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+  <action name="actExit">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/images/images/exit.bmp</normaloff>:/images/images/exit.bmp</iconset>
+   </property>
+   <property name="text">
+    <string>退出</string>
+   </property>
+   <property name="toolTip">
+    <string>退出程序</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="res.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>actExit</sender>
+   <signal>triggered()</signal>
+   <receiver>AxleDesignUI</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>222</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actClear</sender>
+   <signal>triggered()</signal>
+   <receiver>textEdit</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>584</x>
+     <y>361</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
