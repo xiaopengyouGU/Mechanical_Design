@@ -243,7 +243,7 @@ void GearDesignUI::searchChartForContact()
     ui->textEdit->appendPlainText(str);
     m_info->appendInfo(str);        //保存设计信息
     str = "点击按钮，获取接触齿间载荷分配系数KHa\n";
-    str = str + "点击按钮，获取接触齿向载荷分配系数KFa\n";
+    str = str + "点击按钮，获取接触齿向载荷分配系数KHb\n";
     str = str + "点击按钮，获取接触动载系数KHV\n";
     str += "************************\n";
     ui->textEdit->appendPlainText(str);
@@ -362,8 +362,8 @@ void GearDesignUI::searchChartForBend()
     str = str+ "************************";
     ui->textEdit->appendPlainText(str);
     m_info->appendInfo(str);        //保存设计信息
-    str = "点击按钮，获取弯曲齿间载荷分配系数KHa\n";
-    str = str + "点击按钮，获取弯曲齿向载荷分配系数KFa\n";
+    str = "点击按钮，获取弯曲齿间载荷分配系数KFa\n";
+    str = str + "点击按钮，获取弯曲齿向载荷分配系数KFb\n";
     str = str + "点击按钮，获取弯曲动载系数KHV\n";
     str += "************************\n";
     ui->textEdit->appendPlainText(str);
