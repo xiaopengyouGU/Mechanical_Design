@@ -97,7 +97,7 @@ void KeyDesignUI::on_btn_L_clicked()
 void KeyDesignUI::on_btnCalcT_clicked()
 {
     double n = ui->spin_n->value(), P = ui->spin_P->value();
-    double T = 95500 * P/n; //计算转矩
+    double T = 9550 * P/n; //计算转矩
     ui->spin_T->setValue(T);
 }
 
